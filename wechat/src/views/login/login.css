@@ -1,0 +1,21 @@
+#login {
+    background:#f3f3f3;
+    padding:40px;
+    width:100%;
+    height:100%;
+}
+.close {
+    position: absolute;
+    left:10px;
+    top:10px;
+    font-size: 31px;
+}
+.logo_inputs {
+    width:100%;
+}
+.input_wrap {
+    width: 100%;
+}
+.input_wrap input{
+    width:100%;
+}
