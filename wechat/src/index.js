@@ -16,7 +16,7 @@ import {
 
 ReactDOM.render((
     <Router>
-        <Route path="/login" component={Login}/>
+        <Route path="/" component={Login}/>
   </Router>
 ), document.getElementById('root'));
 registerServiceWorker();
