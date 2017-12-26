@@ -1,0 +1,15 @@
+#header {
+    height:0.43rem;
+    font-size: 0.18rem;
+    line-height: 0.43rem;
+    text-align: center;
+    background-image: linear-gradient(to bottom , #313036 0%,#3b3b40 100%);
+    color:#fff;
+    flex:0;
+}
+#header .icon-more {
+    position: absolute;
+    top:0;
+    right:0.15rem;
+    font-size: .24rem;
+}

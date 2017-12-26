@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './login.css'
 import axios from 'axios'
+import {
+    BrowserRouter as Router,hashHistory
+  } from 'react-router-dom'
+
 class Login extends Component {
   constructor(){
     super();
@@ -47,10 +51,12 @@ console.log(name,value)
       username : "",
       password : ""
     })
+    console.log(_this.props)
     axios.post('/login',userInfo).then(res => {
-      console.log(res)
       if(res.data == "success"){
-          alert("success")
+          _this.props.history.push("/chatlist")
+      }else {
+        alert('error')
       }
     })
   }

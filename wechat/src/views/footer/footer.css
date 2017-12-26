@@ -1,0 +1,25 @@
+#footer {
+    flex-grow: 0;
+    height:0.5rem;
+    border-top:0.01rem solid #b2b2b2;
+    background: #f7f7f7;
+    display: flex;
+}
+#footer>a {
+    display: inline-block;
+    flex-grow: 1;
+    font-size: 0.07rem;
+    text-align: center;
+    text-decoration: none;
+    color:#929292;
+    display: flex;
+    flex-direction: column;
+    padding-top:0.08rem;
+    color:#7a7e83;
+}
+#footer>a .iconfont {
+    font-size: 0.23rem;
+}
+#footer>a.selected {
+    color:#1aad19;
+}
