@@ -37,4 +37,6 @@
 }
 .listWrap {
     flex-grow:1;
+    padding-left:.1rem;
+    overflow: auto;
 }

@@ -4,6 +4,10 @@
     border-top:0.01rem solid #b2b2b2;
     background: #f7f7f7;
     display: flex;
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:100%;
 }
 #footer>a {
     display: inline-block;
@@ -19,7 +23,10 @@
 }
 #footer>a .iconfont {
     font-size: 0.23rem;
+    height: 0.23rem;
+    flex-grow:0;
 }
 #footer>a.selected {
     color:#1aad19;
+    flex-grow:1;
 }
