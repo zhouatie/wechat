@@ -18,58 +18,46 @@ class Login extends Component {
       bool : false
     };
   }
+  username = ""
+  password = ""
+  bool = ""
   changeHandle(event){
     let obj = event.target;
     let value = obj.value;
     let name = obj.name;
-    
-console.log(name,value)
-    this.setState({
-      [name] : value
-    },() => {
-        console.log(this.state.password,this.state.username)
-        if(this.state.password !== "" && this.state.username !== ""){
-          this.setState({
-            bool : true
-          })
-        }else {
-          this.setState({
-            bool : false
-          })
-        }
-    })
-    
+    this[name] = value;
+    // if(this.username != "" && this.password != ""){
+    //   this.bool = true;
+    // }else {
+    //   this.bool = false;
+    // }
   }
   toLogin(){
-    if(!this.state.bool) return;
     let _this = this;
     let userInfo = {
-      username : this.state.username,
-      password : this.state.password
+      username : this.username,
+      password : this.password
     }
-    this.setState({
-      username : "",
-      password : ""
-    })
-    console.log(_this.props)
+    
     axios.post('/login',userInfo).then(res => {
-      if(res.data == "success"){
+      if(res.data.status == "success"){
           _this.props.history.push("/chatlist")
       }else {
-        alert('error')
+        alert(res.data.message)
       }
     })
   }
+
   render() {
     
     return (
       <div id="login">
         <span className=" close iconfont icon-close"></span>
         <div className="login_inputs">
-          <div className="input_wrap"><input name="username" onChange={this.changeHandle} type="text" placeholder="请输入账号" /></div>
-          <div className="input_wrap"><input name="password" onChange={this.changeHandle} type="password" placeholder="请输入密码" /></div>
+          <div className="input_wrap"><input name="username" ref="username" onChange={this.changeHandle} type="text" placeholder="请输入账号" /></div>
+          <div className="input_wrap"><input name="password" ref="password" onChange={this.changeHandle} type="password" placeholder="请输入密码" /></div>
         </div>
-        <div onClick={this.toLogin} className={this.state.bool? "login_btn":"login_btn disabled"}>登录</div>
+        <div onClick={this.toLogin} className="login_btn">登录</div>
       </div>
     );
   }

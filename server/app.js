@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 
 var User = require("./mongo/models/login.js");
 
-app.post("/login",function(req,res){
+app.post("/register",function(req,res){
     
     User.find(req.body,function(err,doc){
         if(doc.length<1){
@@ -22,10 +22,38 @@ app.post("/login",function(req,res){
         }
     })
 
-
-
+})
+app.post("/login",function(req,res){
+    var conn = {
+        'username' : req.body.username
+    }
+    User.findOne(conn,function(err,doc){
+        if(!doc || doc.length<1){
+            res.json({
+                status:"error",
+                message:"该用户不存在"
+            });
+        }else if(doc.password!=req.body.password){
+            res.json({
+                status:"error",
+                message:"密码错误！"
+            })
+        }else {
+            res.json({
+                status:'success',
+                message:"登录成功"
+            })
+        }
+    })
 
 })
+
+
+
+
+
+
+
 var onlineUsers = {};
 //当前在线人数
 var onlineCount = 0;
