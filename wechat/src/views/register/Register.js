@@ -6,8 +6,8 @@ import {
   } from 'react-router-dom'
 
 class Register extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.changeHandle = this.changeHandle.bind(this);
     this.toRegister = this.toRegister.bind(this);
@@ -22,39 +22,28 @@ class Register extends Component {
     let obj = event.target;
     let value = obj.value;
     let name = obj.name;
-    
-console.log(name,value)
-    this.setState({
-      [name] : value
-    },() => {
-        console.log(this.state.password,this.state.username)
-        if(this.state.password !== "" && this.state.username !== ""){
-          this.setState({
-            bool : true
-          })
-        }else {
-          this.setState({
-            bool : false
-          })
-        }
-    })
+    this[name] = value;
     
   }
+  componentWillMount(){
+            console.log(this.store,'strore')
+
+  }
+  username = ""
+  password = ""
+  nickname = ""
   toRegister(){
-    if(!this.state.bool) return;
     let _this = this;
     let userInfo = {
-      username : this.state.username,
-      password : this.state.password
+      username : this.username,
+      password : this.password,
+      nickname : this.nickname
     }
-    this.setState({
-      username : "",
-      password : ""
-    })
-    console.log(_this.props)
+    
     axios.post('/register',userInfo).then(res => {
       if(res.data == "success"){
-          _this.props.history.push("/chatlist")
+        _this.props.onSave_info(userInfo)
+          _this.props.history.replace("/chatlist")
       }else {
         alert('error')
       }
@@ -65,11 +54,13 @@ console.log(name,value)
     return (
       <div id="login">
         <span className=" close iconfont icon-close"></span>
+        <div className="upload_logo"></div>
         <div className="login_inputs">
           <div className="input_wrap"><input name="username" onChange={this.changeHandle} type="text" placeholder="请输入账号" /></div>
           <div className="input_wrap"><input name="password" onChange={this.changeHandle} type="password" placeholder="请输入密码" /></div>
+          <div className="input_wrap"><input name="nickname" onChange={this.changeHandle} type="nickname" placeholder="请输入匿名" /></div>
         </div>
-        <div onClick={this.toRegister} className={this.state.bool? "login_btn":"login_btn disabled"}>注册</div>
+        <div onClick={this.toRegister} className="login_btn">注册</div>
       </div>
     );
   }

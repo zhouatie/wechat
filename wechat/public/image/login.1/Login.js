@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './login.css'
-import {connect} from 'react-redux'
 import axios from 'axios'
 import {
     BrowserRouter as Router,hashHistory
@@ -39,22 +38,18 @@ class Login extends Component {
       username : this.username,
       password : this.password
     }
+    
     axios.post('/login',userInfo).then(res => {
       if(res.data.status == "success"){
-          _this.props.dispatch({type:"SAVE_INFO",data:res.data.userInfo})
-        
           _this.props.history.replace({pathname:"/chatlist"});
       }else {
         alert(res.data.message)
       }
     })
   }
-  componentDidMount(){
-    console.log('mou')
-    console.log(this.refs.password.value)
-  }
+
   render() {
-    console.log('rende')
+    
     return (
       <div id="login">
         <span className=" close iconfont icon-close"></span>
@@ -68,4 +63,4 @@ class Login extends Component {
   }
 }
 
-export default connect()(Login);
+export default Login;

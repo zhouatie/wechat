@@ -10,7 +10,7 @@ var User = require("./mongo/models/login.js");
 
 app.post("/register",function(req,res){
     
-    User.find(req.body,function(err,doc){
+    User.find({username:req.body.username},function(err,doc){
         if(doc.length<1){
             var user = new User(req.body);
             user.save(function(err,doc){
@@ -28,6 +28,7 @@ app.post("/login",function(req,res){
         'username' : req.body.username
     }
     User.findOne(conn,function(err,doc){
+        console.log(doc)
         if(!doc || doc.length<1){
             res.json({
                 status:"error",
@@ -41,7 +42,8 @@ app.post("/login",function(req,res){
         }else {
             res.json({
                 status:'success',
-                message:"登录成功"
+                message:"登录成功",
+                userInfo:doc
             })
         }
     })

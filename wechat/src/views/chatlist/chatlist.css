@@ -9,6 +9,8 @@
     padding:0.08rem;
     background: #efeff4;
     flex:0;
+    border-bottom: .01rem solid #d9d9d9;
+    margin-left:-.1rem;
 }
 .search-wrap .input {
     width:100%;
@@ -39,4 +41,5 @@
     flex-grow:1;
     padding-left:.1rem;
     overflow: auto;
+    background: #fff;
 }

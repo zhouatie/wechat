@@ -1,0 +1,31 @@
+#root #friends {
+    font-size: 0.32rem;
+}
+.friend_lists {
+    background-color: #fff;
+    padding-left:.1rem;
+}
+.friend_lists .friend_list:last-of-type {
+    border:none;
+}
+.friend_list .friend_list_logo {
+    width:0.36rem;
+    height:.36rem;
+}
+.friend_list {
+    height:0.55rem;
+    border-bottom:.01rem solid #d9d9d9;
+    display: flex;
+}
+.friend_list_logoWrap {
+    flex-grow: 0;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.friend_name {
+    flex-grow: 1;
+    padding-left: 0.1rem;
+    font-size: .15rem;
+    line-height: .54rem;
+}

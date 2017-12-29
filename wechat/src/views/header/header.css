@@ -11,9 +11,19 @@
     left:0;
     top:0;
 }
-#header .icon-more {
+#header .right {
     position: absolute;
     top:0;
     right:0.15rem;
     font-size: .24rem;
+    color:#fff;
+    text-decoration: none;
+}
+#header .left {
+    position: absolute;
+    top:0;
+    left:0.1rem;
+    font-size: .16rem;
+    color:#fff;
+    text-decoration: none;
 }

@@ -1,7 +1,7 @@
 #footer {
     flex-grow: 0;
     height:0.5rem;
-    border-top:0.01rem solid #b2b2b2;
+    border-top:0.01rem solid rgba(0,0,0,.1);
     background: #f7f7f7;
     display: flex;
     position: absolute;

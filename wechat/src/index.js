@@ -8,7 +8,7 @@ import App from './App';
 // import Chatlist from './views/chatlist/Chatlist'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import todoApp from './redux/reducers'
+import Reducer from './redux/reducers'
 // import {
 //     BrowserRouter as Router,
 //     Route,
@@ -17,9 +17,12 @@ import todoApp from './redux/reducers'
 //     Switch
 //   } from 'react-router-dom'
 
-let store = createStore(todoApp);
+let store = createStore(Reducer);
+window.store = store;
 
-
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
 ReactDOM.render((
   <Provider store={store} >
     <App/>
