@@ -3,27 +3,66 @@ import './friends.css'
 import Header from '../header/Header.js'
 import Footer from '../footer/Footer.js'
 import { connect } from 'react-redux'
+import { SearchBar, Toast } from 'antd-mobile';
+import axios from 'axios'
+
 
 class Friends extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            value:""
+        }
     }
+    toUserCard = (id) => {
+        console.log(id,'Friends.js');
+        this.props.history.push({
+            pathname:"/userCard",
+            params:{
+                id:id
+            }
+        })
+    }
+    successToast = function () {
+        Toast.success('Load success !!!', 1);
+    }
+    failToast = function () {
+        Toast.fail('Load failed !!!', 1);
+    }
+    onSubmit = (value) => {
+        let _this = this;
+        // if (!value ) return this.setState({ search_lists: [] });
+
+        // axios.post('/getUsers', { username: value }).then((res) => {
+        //     this.setState({ search_lists: res.data.userInfo });
+        // })
+    }
+    onChange = (value) => {
+        this.setState({ value });
+        this.onSubmit(value);
+    }
+    clear = () => {
+        this.setState({ value: '' });
+    }
+    
     componentWillMount() {
 
     }
+
+    
     render() {
         console.log(this.props,'props')
         return (
             <div id="friends">
                 <Header title="通讯录" />
                 <div>
-                    <div className="search-wrap">
-                        <div className="input">
-                            <span className="iconfont icon-search"></span>
-                            搜索
-                        <span className="iconfont icon-sound"></span>
-                        </div>
+                    <div style={{ fontSize: 14 }}>
+                        <SearchBar
+                            value={this.state.value}
+                            placeholder="搜索"
+                            onSubmit={this.onSubmit}
+                            onChange={this.onChange}
+                        />
                     </div>
                     <div className="friend_lists">
                         <div className="friend_list">
@@ -49,13 +88,13 @@ class Friends extends Component {
                     </div>
                     <div style={{ marginTop: ".1rem" }} className="friend_lists">
                         {this.props.list_arr.map((list,index) =>
-                            <div key={index} className="friend_list">
+                            <div onClick={()=>{this.toUserCard(list.id)}} key={index} className="friend_list">
                                 <div className="friend_list_logoWrap">
                                     <img className="friend_list_logo" src="./image/icon_moren_face.png" alt="" />
                                 </div>
                                 <div className="friend_name">{list.nickname}</div>
                             </div>
-                        )}
+                        ,this)}
                     </div>
                 </div>
                 <Footer />

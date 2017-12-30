@@ -4,11 +4,11 @@ import Register from './views/register/Register'
 import Chatlist from './views/chatlist/Chatlist'
 import Friends from './views/friends/Friends.js'
 import Add_friend from './views/add_friend/Add_friend.js'
+import UserCard from './views/usercard/UserCard.js'
 
 import {
     BrowserRouter as Router,
     Route,
-    Link,
     Redirect,
     Switch
   } from 'react-router-dom'
@@ -38,6 +38,7 @@ class App extends Component {
           <PrivateRoute path="/friends" component={Friends}/>
           <PrivateRoute path="/more" component={Friends}/>
           <PrivateRoute path="/add_friend" component={Add_friend}/>
+          <PrivateRoute path="/userCard" component={UserCard}/>
           <Redirect exact={true} from='/' to='/login'/>
         </Switch>
     </Router>

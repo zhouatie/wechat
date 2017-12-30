@@ -57,3 +57,11 @@
 .login_btn.disabled {
     opacity: 0.5;
 }
+.more-option {
+    font-size: 0.16rem;
+    align-self: flex-end;
+    position:absolute;
+    bottom:.1rem;
+    left:50%;
+    transform: translateX(-50%);
+}

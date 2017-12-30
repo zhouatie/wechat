@@ -35,7 +35,7 @@ import { SAVE_INFO ,ADD_FRIEND} from './actions'
 function save_info(state={},action){
     switch (action.type) {
         case SAVE_INFO:
-        return {...state,...action.data}
+        return {...state,...action.data};
         break;
         case ADD_FRIEND:
         return {...state,friends:[...state.friends,{
