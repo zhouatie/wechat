@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './register.css'
 import axios from 'axios'
+import {connect} from 'react-redux'
 import {
     BrowserRouter as Router
   } from 'react-router-dom'
@@ -39,10 +40,10 @@ class Register extends Component {
       password : this.password,
       nickname : this.nickname
     }
-    
+    console.log(userInfo,'reg userinfo')
     axios.post('/register',userInfo).then(res => {
-      if(res.data == "success"){
-        _this.props.onSave_info(userInfo)
+      if(res.data.status == "success"){
+          _this.props.dispatch({type:"SAVE_INFO",data:res.data.userInfo})
           _this.props.history.replace("/chatlist")
       }else {
         alert('error')
@@ -66,4 +67,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default connect()(Register);

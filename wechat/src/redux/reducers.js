@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SAVE_INFO } from './actions'
+import { SAVE_INFO ,ADD_FRIEND} from './actions'
 
 // function visibilityFilter(state = SHOW_ALL, action) {
 //   switch (action.type) {
@@ -35,15 +35,32 @@ import { SAVE_INFO } from './actions'
 function save_info(state={},action){
     switch (action.type) {
         case SAVE_INFO:
-        return Object.assign({},state,{
-            username:action.data.username,
-            password:action.data.password,
-            nickname:action.data.nickname
-        });
+        return {...state,...action.data}
+        break;
+        case ADD_FRIEND:
+        return {...state,friends:[...state.friends,{
+            nickname:action.data.nickname,
+            id:action.data.id
+        }]}
         default:
         return state
     }
 }
+
+// function friends(state=[],action){
+//     switch(action.type){
+
+//         case ADD_FRIEND:
+//         return [...state,{
+//             nickname:action.nickname,
+//             id:action.id
+//         }]
+//         break;
+//         default:
+//         return state;
+//     }
+// }
+
 
 const Reducer = combineReducers({
   save_info

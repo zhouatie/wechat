@@ -6,7 +6,7 @@ import List from './List.js'
 
 class Chatlist extends Component {
   componentWillMount() {
-    console.log(this.props, 'this')
+    
   }
   render() {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

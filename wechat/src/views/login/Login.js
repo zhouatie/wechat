@@ -41,8 +41,8 @@ class Login extends Component {
     }
     axios.post('/login',userInfo).then(res => {
       if(res.data.status == "success"){
+        console.log(res.data,'res dat')
           _this.props.dispatch({type:"SAVE_INFO",data:res.data.userInfo})
-        
           _this.props.history.replace({pathname:"/chatlist"});
       }else {
         alert(res.data.message)
@@ -50,11 +50,9 @@ class Login extends Component {
     })
   }
   componentDidMount(){
-    console.log('mou')
-    console.log(this.refs.password.value)
+
   }
   render() {
-    console.log('rende')
     return (
       <div id="login">
         <span className=" close iconfont icon-close"></span>

@@ -16,16 +16,28 @@ import {
 class App extends Component {
   
   render() {
-    
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={props => (
+        window.store.getState().save_info.username ? (
+          <Component {...props}/>
+        ) : (
+          <Redirect to={{
+            pathname: '/login',
+            state: { from: props.location }
+          }}/>
+        )
+      )}/>
+    )
+
     return (
       <Router>
         <Switch>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
-          <Route exact={true} path="/chatlist" component={Chatlist}/>
-          <Route exact={true} path="/friends" component={Friends}/>
-          <Route exact={true} path="/more" component={Friends}/>
-          <Route exact={true} path="/add_friend" component={Add_friend}/>
+          <PrivateRoute path="/chatlist" component={Chatlist}/>
+          <PrivateRoute path="/friends" component={Friends}/>
+          <PrivateRoute path="/more" component={Friends}/>
+          <PrivateRoute path="/add_friend" component={Add_friend}/>
           <Redirect exact={true} from='/' to='/login'/>
         </Switch>
     </Router>

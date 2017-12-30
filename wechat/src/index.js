@@ -9,13 +9,8 @@ import App from './App';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Reducer from './redux/reducers'
-// import {
-//     BrowserRouter as Router,
-//     Route,
-//     Link,
-//     Redirect,
-//     Switch
-//   } from 'react-router-dom'
+import 'antd-mobile/dist/antd-mobile.css';
+
 
 let store = createStore(Reducer);
 window.store = store;

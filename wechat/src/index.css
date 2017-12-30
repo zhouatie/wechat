@@ -10,6 +10,9 @@ body {
   padding:0;
   box-sizing: border-box;
 }
+[class^='am-'] {
+    box-sizing: content-box;
+}
 body,html,#root {
   height:100%;
   width:100%;
