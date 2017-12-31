@@ -48,7 +48,7 @@ class Chatlist extends Component {
 
     return (
       <div id="chatlist">
-        <Header title="微信" />
+        <Header field={{title:'微信',path:"/chatlist"}}  />
         <div style={{ fontSize: 14 }}>
           <SearchBar
             value={this.state.value}

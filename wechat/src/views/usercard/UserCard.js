@@ -8,17 +8,18 @@ class InfoCard extends Component {
         console.log(props,'usercard')
     }
     toChat = () => {
-        this.props.history.push({
+        this.props.history.replace({
             pathname:'/chat',
             params:{
                 id:this.props.history.location.params.id
             }
         });
     }
+
     render(){
         return (
             <div id='userCard'>
-                <Header title="详细资料"/>
+                <Header  field={{title:'详细资料',path:"/userCard"}} />
                 <div onClick={this.toChat} className="green_btn">发消息</div>
             </div>
         )

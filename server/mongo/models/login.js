@@ -5,7 +5,8 @@ var loginSchema = mongoose.Schema({
     username: String,
     password: String,
     nickname: String,
-    friends: Array
+    friends: Array,
+    logo: String
 });
 
 var User = mongoose.model('user', loginSchema);

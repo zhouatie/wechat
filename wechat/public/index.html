@@ -10,7 +10,7 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_516145_73aff3ukcy0ysyvi.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_516145_xjvk1vbwios10pb9.css">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -26,6 +26,9 @@
           document.addEventListener('DOMContentLoaded', function() {
             FastClick.attach(document.body);
           }, false);
+          // document.addEventListener('touchmove', function(event) {
+          //    event.preventDefault();
+          // }, false);
         }
         if(!window.Promise) {
           document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
   Link
 } from 'react-router-dom'
-import { ActionSheet , Toast } from 'antd-mobile';
+import { ActionSheet, Toast } from 'antd-mobile';
 
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
@@ -42,12 +42,24 @@ class Register extends Component {
   username = ""
   password = ""
   nickname = ""
+
+  successToast(value) {
+    Toast.success(value, 1);
+  }
+  failToast(value) {
+    Toast.fail(value, 1);
+  }
   toRegister() {
     let _this = this;
     let userInfo = {
       username: this.username,
       password: this.password,
-      nickname: this.nickname
+      nickname: this.nickname,
+      logo: './image/icon_moren_face.png'
+    }
+
+    if (!userInfo.username || !userInfo.password || !userInfo.nickname) {
+      this.failToast("请输入内容！！！")
     }
     console.log(userInfo, 'reg userinfo')
     axios.post('/register', userInfo).then(res => {
@@ -62,7 +74,7 @@ class Register extends Component {
 
 
   showActionSheet = () => {
-    const BUTTONS = [ '登录','关闭', '取消'];
+    const BUTTONS = ['登录', '关闭', '取消'];
     ActionSheet.showActionSheetWithOptions({
       options: BUTTONS,
       cancelButtonIndex: BUTTONS.length - 1,

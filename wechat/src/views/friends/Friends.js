@@ -54,7 +54,7 @@ class Friends extends Component {
         console.log(this.props,'props')
         return (
             <div id="friends">
-                <Header title="通讯录" />
+                <Header field={{title:'微信',path:"/friends"}} />
                 <div>
                     <div style={{ fontSize: 14 }}>
                         <SearchBar
@@ -81,7 +81,7 @@ class Friends extends Component {
                     <div style={{ marginTop: ".1rem" }} className="friend_lists">
                         <div className="friend_list">
                             <div className="friend_list_logoWrap">
-                                <img className="friend_list_logo" src="./image/icon_moren_face.png" alt="" />
+                                <img className="friend_list_logo" src={this.props.logo} alt="" />
                             </div>
                             <div className="friend_name">我</div>
                         </div>
@@ -106,7 +106,8 @@ class Friends extends Component {
 function mapStateToProps(state) {
     return {
         list_arr: state.save_info.friends ,
-        groups: state.save_info.groups
+        groups: state.save_info.groups,
+        logo: state.save_info.logo
     }
 }
 

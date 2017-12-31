@@ -61,7 +61,7 @@ class Add_friend extends Component {
 
         return (
             <div id="friends">
-                <Header title="添加朋友" />
+                <Header  field={{title:'微信',path:"/add_friend"}}  />
                 <div style={{ fontSize: 14 }}>
                     <SearchBar
                         value={this.state.value}

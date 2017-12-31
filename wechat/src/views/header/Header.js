@@ -7,11 +7,14 @@ class Header extends Component {
 
 
     let Left = null;
-    switch(this.props.title){
-      case "添加朋友":
+    switch(this.props.field.path){
+      case "/add_friend":
       Left = <Link to="/friends" className="left iconfont icon-back">通讯录</Link>;
       break;
-      case "详细资料":
+      case "/chat":
+      Left = <Link to="/friends" className="left iconfont icon-back">返回</Link>;
+      break;
+      case "/userCard":
       Left = <Link to="/friends" className="left iconfont icon-back">通讯录</Link>;
       break;
       default:
@@ -19,21 +22,24 @@ class Header extends Component {
     }
     
     let Right = null;
-    switch(this.props.title){
-      case "通讯录":
+    switch(this.props.field.path){
+      case "/friends":
       Right = <Link to="/add_friend" className="right iconfont icon-add_friend" />;
       break;
-      case "微信":
+      case "/chatlist":
       Right = <Link to="/more" className="right iconfont icon-more" />;
       break;
-      case "详细资料":
+      case "/userCard":
       Right = <Link to="/infoSetting" className="right iconfont icon-info_setting" />;
+      break;
+      case "/chat":
+      Right = <Link to="/infoSetting" className="right iconfont icon-chat_detail" />;
       break;
     }
     return (
       <div id="header">
           { Left }
-          {this.props.title}
+          {this.props.field.title}
           { Right }
       </div>
     );

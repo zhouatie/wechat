@@ -1,0 +1,134 @@
+#root>.chat {
+    padding:0;
+    height:auto;
+}
+.chat #header {
+    position: static;
+}
+.chat .chat-content {
+    position: absolute;
+    top:0.43rem;
+    bottom:0;
+    left:0;
+    width:100%;
+}
+.chat .chat-content .text-wrap {
+    position:absolute;
+    top:0;
+    bottom:0.5rem;
+    width:100%;
+    background: #ebebeb;
+    overflow: hidden;
+}
+.chat .chat-content .chat-bottom {
+    position: absolute;
+    bottom:0;
+    width:100%;
+    height:.5rem;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    display: flex;
+    background:#f5f5f6;
+    border-top:.01rem solid #d7d7d9;
+}
+.chat-bottom .bottom-left-btn {
+    width:.47rem;
+    height:100%;
+    padding:0 .1rem;
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.chat-bottom .bottom-right-btn {
+    width:.84rem;
+    height:100%;
+    padding:0 .1rem;
+    flex-grow: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.chat-bottom .bottom-inputWrap {
+    flex-grow: 1;
+    height:100%;
+    padding:0.06rem 0;
+}
+.chat-bottom .bottom-inputWrap textarea {
+    border:1px solid #dddddd;
+    width:100%;
+    border-radius: 0.03rem;
+    resize: none;
+    line-height: .24rem;
+    position: relative;
+    font-size: .16rem;
+    padding: .05rem;
+    height:0.36rem;
+    outline: none;
+}
+.chat-bottom .iconfont {
+    font-size:0.28rem;
+    color:#7f8389;
+    height:0.41rem;
+}
+#message-wrap {
+    padding:.1rem;
+    padding-top:.13rem;
+}
+#message-wrap .message {
+    font-size: .16rem;
+    line-height: .20rem;
+    position: relative;
+    margin-bottom:.15rem;
+}
+.self_message {
+    text-align: right;
+}
+.self_message .message-logo-wrap {
+    width:.5rem;
+    position: absolute;
+    right:0;
+    top:0;
+}
+.self_message .message-logo-wrap img {
+    width:.4rem;
+    height:.4rem;
+}
+.self_message .message-info-wrap {
+    padding:.1rem;
+    background: #a0e75a;
+    border:.01rem solid #6fb44e;
+    border-radius: .03rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-right: .5rem;
+    display: inline-block;
+    text-align: left;
+    margin-left:.6rem;
+}
+.other_message {
+    text-align: left;
+}
+.other_message .message-logo-wrap {
+    width:.5rem;
+    position: absolute;
+    left:0;
+    top:0;
+}
+.other_message .message-logo-wrap img {
+    width:.4rem;
+    height:.4rem;
+}
+.other_message .message-info-wrap {
+    padding:.1rem;
+    background: #000;
+    border:.01rem solid #ccc;
+    border-radius: .03rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-left: .5rem;
+    display: inline-block;
+    margin-right:.6rem;
+}

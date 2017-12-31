@@ -5,7 +5,7 @@ import axios from 'axios'
 import {
   Link
 } from 'react-router-dom'
-import { ActionSheet , Toast } from 'antd-mobile';
+import { ActionSheet, Toast } from 'antd-mobile';
 
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
@@ -30,6 +30,14 @@ class Login extends Component {
   username = ""
   password = ""
   bool = ""
+
+  successToast(value) {
+    Toast.success(value, 1);
+  }
+  failToast(value) {
+    Toast.fail(value, 1);
+  }
+
   changeHandle(event) {
     let obj = event.target;
     let value = obj.value;
@@ -60,7 +68,7 @@ class Login extends Component {
   componentDidMount() {
 
   }
-  
+
   showActionSheet = () => {
     const BUTTONS = ['切换账号', '找回密码', '注册', '关闭', '取消'];
     ActionSheet.showActionSheetWithOptions({
@@ -74,7 +82,7 @@ class Login extends Component {
       wrapProps,
     },
       (buttonIndex) => {
-        if(buttonIndex==2){
+        if (buttonIndex == 2) {
           this.props.history.replace("/register")
         }
       });
@@ -87,7 +95,7 @@ class Login extends Component {
           <div className="input_wrap"><input name="username" ref="username" onChange={this.changeHandle} type="text" placeholder="请输入账号" /></div>
           <div className="input_wrap"><input name="password" ref="password" onChange={this.changeHandle} type="password" placeholder="请输入密码" /></div>
         </div>
-        <div onClick={this.toLogin} className="login_btn">登录</div>
+        <div onClick={this.toLogin} className="green_btn">登录</div>
         <div className="more-option" onClick={this.showActionSheet}>更多选项</div>
       </div>
     );
