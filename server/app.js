@@ -8,23 +8,20 @@ app.use(bodyParser.json())
 
 var User = require("./mongo/models/login.js");
 
-app.use(express.static("../wechat/build/"));
+// app.use(express.static("../wechat/build/"));
+// app.use(express.static("./public"));
 
 let user = {};
 
-// 允许跨域
-app.all('*',function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-
-  if (req.method == 'OPTIONS') {
-    res.send(200); /让options请求快速返回/
-  }
-  else {
-    next();
-  }
-});
+// var onlineUsers = {};
+// //当前在线人数
+// var onlineCount = 0;
+// io.on('connection', function (socket) {
+//   socket.emit('news', { hello: 'world' });
+//   socket.on('my other event', function (data) {
+//     console.log(data);
+//   });
+// });
 // 注册
 app.post("/register", function (req, res) {
 
@@ -134,29 +131,6 @@ app.post('/makeFriend', (req, res) => {
 
 
 
-var onlineUsers = {};
-//当前在线人数
-var onlineCount = 0;
-
-io.on('connection', function (socket) {
-    console.log('a user connected');
-        io.emit('message', '还你消息');
-    //监听新用户加入
-    socket.on('login', function (obj) {
-        console.log(obj,'server obj');
-        io.emit('message', '还你消息');
-    });
-
-    //监听用户退出
-    socket.on('disconnect', function () {
-        
-    });
-
-    //监听用户发布聊天内容
-    socket.on('message', function (obj) {
-        
-    });
-});
 
 
 

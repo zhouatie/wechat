@@ -82,6 +82,15 @@
     line-height: .20rem;
     position: relative;
     margin-bottom:.15rem;
+    animation: goup 0.3s;
+}
+@keyframes goup {
+    0% {
+        transform: translate(0, 100px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
 .self_message {
     text-align: right;
@@ -123,7 +132,7 @@
 }
 .other_message .message-info-wrap {
     padding:.1rem;
-    background: #000;
+    background: #fff;
     border:.01rem solid #ccc;
     border-radius: .03rem;
     word-wrap: break-word;

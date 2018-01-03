@@ -6,6 +6,8 @@ import {
   Link
 } from 'react-router-dom'
 import { ActionSheet, Toast } from 'antd-mobile';
+// import * as io from 'socket.io-client'
+
 
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
@@ -30,7 +32,10 @@ class Login extends Component {
   username = ""
   password = ""
   bool = ""
+  componentDidMount() {
+    
 
+  }
   successToast(value) {
     Toast.success(value, 1);
   }
@@ -56,7 +61,7 @@ class Login extends Component {
       password: this.password
     }
     axios.post('/login', userInfo).then(res => {
-      if (res.data.status == "success") {
+      if (res.data.status === "success") {
         console.log(res.data, 'res dat')
         _this.props.dispatch({ type: "SAVE_INFO", data: res.data.userInfo })
         _this.props.history.replace({ pathname: "/chatlist" });
@@ -65,9 +70,7 @@ class Login extends Component {
       }
     })
   }
-  componentDidMount() {
 
-  }
 
   showActionSheet = () => {
     const BUTTONS = ['切换账号', '找回密码', '注册', '关闭', '取消'];
@@ -82,7 +85,7 @@ class Login extends Component {
       wrapProps,
     },
       (buttonIndex) => {
-        if (buttonIndex == 2) {
+        if (buttonIndex === 2) {
           this.props.history.replace("/register")
         }
       });

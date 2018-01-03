@@ -3,7 +3,7 @@ import './chat.css'
 import { connect } from 'react-redux'
 import Header from '../header/Header.js'
 // const socket = require('socket.io-client')('0.0.0.0:4000');
-// import * as io from 'socket.io-client'
+import * as io from 'socket.io-client'
 
 
 class Chat extends Component {
@@ -14,26 +14,33 @@ class Chat extends Component {
     }
     loadSocket() {
         var _this = this;
-        // _this.socket = io.connect('http://localhost:4000', {
-        //     path: '/',
-        //     transports: ['websocket', 'polling']
-        // });
-        // this.socket.on('message',function(data){
-        //     console.log(data,'message data')
-        // })
-        // // this.socket.on('login','jinqule')
-        // this.socket.on("message",function(data){
-        //     console.log(data,'socket data')
-        // })
         
+        _this.socket = io('http://localhost:8888');
+        
+        _this.socket.on('news', function (data) {
+            _this.socket.emit('my other event', { my: 'data222' });
+        });
+
+        this.socket.on("message",function(data){
+            console.log(data.info,999)
+            let message_wrap = document.getElementById("message-wrap");
+            let div = document.createElement("div");
+            let value = data.info;
+            div.className = "other_message message";
+            div.innerHTML = '<div class="message-logo-wrap"><img src="' + _this.props.userData.logo + '"/></div><div class="message-info-wrap">' + value + '</div>';
+            message_wrap.appendChild(div);
+        })
     }
     onSend = () => {
         console.log(this.props.userData, 'data')
         let message_wrap = document.getElementById("message-wrap");
         let div = document.createElement("div");
+        let value = this.refs.textarea.value;
         div.className = "self_message message";
-        div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.props.userData.logo + '"/></div><div class="message-info-wrap">' + this.refs.textarea.value + '</div>';
+        div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.props.userData.logo + '"/></div><div class="message-info-wrap">' + value + '</div>';
         message_wrap.appendChild(div);
+        this.socket.emit('message', { info : value });
+        
         this.refs.textarea.value = "";
     }
     componentWillUnmount() {
