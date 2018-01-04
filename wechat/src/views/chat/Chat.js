@@ -10,29 +10,32 @@ class Chat extends Component {
     constructor(props){
         super(props);
         this.state = {
-            chat_persons : []
+            chat_person : []
         }
     }
 
     componentDidMount() {
         this.loadSocket();
         this.setState({
-            chat_persons:[...this.state.chat_persons,this.props.history.location.params.friend]
+            chat_person:this.props.history.location.params.friend
+        },()=>{
+            console.log(this.state.chat_person)
         });
+    }
+    componentWillUnmount(){
+        this.socket.close();
     }
     loadSocket() {
         var _this = this;
 
         _this.socket = io('http://localhost:8888');
 
-        _this.socket.on('news', function (data) {
-            _this.socket.emit('my other event', { my: 'data222' });
-        });
+        this.socket.emit('join',_this.props.userData._id);
 
-        this.socket.on("message", function (data) {
+        this.socket.on("private_message", function (from,to,data) {
             
             _this.appendMsg(data,false)
-            
+            console.log(data,'收到消息')
         })
     }
     onSend = () => {
@@ -40,20 +43,20 @@ class Chat extends Component {
         
     }
     appendMsg(data, self) {
+        let _this = this;
         let message_wrap = document.getElementById("message-wrap");
         let div = document.createElement("div");
         if (self) {
             let value = this.refs.textarea.value;
             div.className = "self_message message";
             div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.props.userData.logo + '"/></div><div class="message-info-wrap">' + value + '</div>';
-            this.socket.emit('message', { info: value });
+            this.socket.emit('private_message', _this.props.userData._id,_this.state.chat_person.id, value );
             this.refs.textarea.value = "";
 
         } else {
             
-            let value = data.info;
             div.className = "other_message message";
-            div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.props.userData.logo + '"/></div><div class="message-info-wrap">' + value + '</div>';
+            div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.props.userData.logo + '"/></div><div class="message-info-wrap">' + data + '</div>';
 
         }
         message_wrap.appendChild(div);

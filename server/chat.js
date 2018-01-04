@@ -16,13 +16,38 @@ var io = require('socket.io')(app);
 // });
 app.listen(8888);
 
-function handler (req, res) {
+function handler(req, res) {
 
 }
 
+// io.on('connection', function (socket) {
+//   socket.on('message', function (data) {
+//     console.log(data,66);
+//     io.emit("message",{info:'收到消息是'+data.info})
+//   });
+// });
+
+var arrAllSocket = [];
 io.on('connection', function (socket) {
-  socket.on('message', function (data) {
-    console.log(data,66);
-    io.emit("message",{info:'收到消息是'+data.info})
+  console.log(1)
+  socket.on('join', function (userName) {
+    user = userName;
+  console.log(user,'进去了')
+    
+    arrAllSocket[user] = socket;//把socket存到全局数组里面去 
   });
-});
+
+  //私聊：服务器接受到私聊信息，发送给目标用户  
+  socket.on('private_message', function (from, to, msg) {
+    var target = arrAllSocket[to];
+    console.log("接受私人消息",to,target)
+    if (target) {
+      console.log('emitting private message by ', from, ' say to ', to, msg);
+      target.emit("private_message", from, to, msg);
+    }
+  });
+}); 
+
+io.on("disconnect",function(a){
+  console.log(a)
+})
