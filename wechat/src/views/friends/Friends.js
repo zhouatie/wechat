@@ -14,12 +14,12 @@ class Friends extends Component {
             value:""
         }
     }
-    toUserCard = (id) => {
-        console.log(id,'Friends.js');
+    toUserCard = (obj) => {
+        console.log(obj.id,'Friends.js');
         this.props.history.push({
             pathname:"/userCard",
             params:{
-                id:id
+                friend:obj
             }
         })
     }
@@ -88,7 +88,7 @@ class Friends extends Component {
                     </div>
                     <div style={{ marginTop: ".1rem" }} className="friend_lists">
                         {this.props.list_arr.map((list,index) =>
-                            <div onClick={()=>{this.toUserCard(list.id)}} key={index} className="friend_list">
+                            <div onClick={()=>{this.toUserCard(list)}} key={index} className="friend_list">
                                 <div className="friend_list_logoWrap">
                                     <img className="friend_list_logo" src="./image/icon_moren_face.png" alt="" />
                                 </div>

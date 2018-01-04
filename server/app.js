@@ -11,7 +11,7 @@ var User = require("./mongo/models/login.js");
 // app.use(express.static("../wechat/build/"));
 // app.use(express.static("./public"));
 
-let user = {};
+// let user = {};
 
 // var onlineUsers = {};
 // //当前在线人数
@@ -48,7 +48,6 @@ app.post("/login", function (req, res) {
         'username': req.body.username
     }
     User.findOne(conn, function (err, doc) {
-        console.log(doc)
         if (!doc || doc.length < 1) {
             res.json({
                 status: "error",
@@ -60,7 +59,7 @@ app.post("/login", function (req, res) {
                 message: "密码错误！"
             })
         } else {
-            user = doc;
+            // user = doc;
             res.json({
                 status: 'success',
                 message: "登录成功",
@@ -72,18 +71,16 @@ app.post("/login", function (req, res) {
 })
 // 全局搜索好友
 app.post("/getUsers", (req, res) => {
-    console.log(req.body.username);
     let partten = new RegExp("^" + req.body.username);
     let conn = {
         username: {
             $regex: partten,
-            $ne: user.username
+            $ne: req.body.self_username
         }
     }
 
     User.find(conn, (err, doc) => {
         if (doc) {
-            console.log(doc)
             res.json({
                 status: "success",
                 message: "查找成功",
@@ -94,30 +91,15 @@ app.post("/getUsers", (req, res) => {
 })
 // 添加朋友
 app.post('/makeFriend', (req, res) => {
-    let id = req.body.id;
-    let nickname = req.body.nickname;
-    // User.findOne({_id:id},(err,doc) => {
-    //     console.log(doc);
-    //     if(doc){
-    //         if(doc.friends) {
-    //             doc.friends.push(id);
-    //         }else {
-    //             doc.friends = [id]
-    //         };
-    //         console.log(doc,'doc')
-    //         res.json({
-    //             status:"success",
-    //             message:"查找成功",
-    //             userInfo:doc
-    //         })
-    //     }else {
-    //         res.send('error')
-    //     }
-    // });
-    User.update({ _id: id }, { $addToSet: { friends: { id: user._id, nickname: user.nickname } } }, (err, doc) => {
+
+    let self = req.body.self;
+    let friend = req.body.friend;
+    console.log(self,1);
+    console.log(friend,2);
+    User.update({ _id: friend.id }, { $addToSet: { friends: self } },(err,doc)=>{
 
     })
-    User.update({ _id: user._id }, { $addToSet: { friends: { id: id, nickname: nickname } } }, (err, doc) => {
+    User.update({ _id: self.id }, { $addToSet: { friends: friend } }, (err, doc) => {
         res.json({
             status: "success",
             message: "添加好友成功"

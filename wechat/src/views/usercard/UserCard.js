@@ -11,7 +11,7 @@ class InfoCard extends Component {
         this.props.history.replace({
             pathname:'/chat',
             params:{
-                id:this.props.history.location.params.id
+                friend:this.props.history.location.params.friend
             }
         });
     }

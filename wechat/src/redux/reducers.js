@@ -38,10 +38,7 @@ function save_info(state={},action){
         return {...state,...action.data};
         break;
         case ADD_FRIEND:
-        return {...state,friends:[...state.friends,{
-            nickname:action.data.nickname,
-            id:action.data.id
-        }]}
+        return {...state,friends:[...state.friends,action.data]}
         default:
         return state
     }

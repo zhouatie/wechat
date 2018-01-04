@@ -14,20 +14,18 @@ class Add_friend extends Component {
         value: '',
         search_lists: []
     };
-    // componentDidMount() {
-    //     this.autoFocusInst.focus();
-    // }
-    successToast = function () {
-        Toast.success('Load success !!!', 1);
+    
+    successToast = function (value) {
+        Toast.success(value, 1);
     }
-    failToast = function () {
-        Toast.fail('Load failed !!!', 1);
+    failToast = function (value) {
+        Toast.fail(value, 1);
     }
     onSubmit = (value) => {
         let _this = this;
-        if (!value ) return this.setState({ search_lists: [] });
-
-        axios.post('/getUsers', { username: value }).then((res) => {
+        if (!value) return this.setState({ search_lists: [] });
+        let self_username = window.store.getState().save_info.username;
+        axios.post('/getUsers', { username: value, self_username: self_username }).then((res) => {
             this.setState({ search_lists: res.data.userInfo });
         })
     }
@@ -42,15 +40,32 @@ class Add_friend extends Component {
         this.manualFocusInst.focus();
     }
     onAdd_friend = (obj) => {
-        let data = { id: obj._id,nickname:obj.nickname };
-        console.log(data);
-        axios.post('/makeFriend',data ).then(res => {
-            if(res.data.status=='success'){
-                this.props.dispatch({type:"ADD_FRIEND",data:data})
-                this.setState({value:" ",search_lists:[]});
-                this.successToast();
-            }else {
-                this.failToast();
+        let _this = this;
+        let bool = this.props.save_info.friends.some((obj)=>{
+            if(obj._id==obj._id){
+                _this.failToast("已是您的好友！")
+                return true;
+            }
+        })
+        if(bool) return false;
+        let firend = {
+            username: obj.username,
+            id: obj._id,
+            nickname: obj.nickname,
+            logo: obj.logo
+        };
+        let data = {
+            self: _this.props.user_info,
+            friend: firend
+        }
+        
+        axios.post('/makeFriend', data).then(res => {
+            if (res.data.status == 'success') {
+                this.props.dispatch({ type: "ADD_FRIEND", data: data.friend })
+                this.setState({ value: " ", search_lists: [] });
+                this.successToast("添加成功！！");
+            } else {
+                this.failToast("请求失败！！！");
             }
         })
     }
@@ -61,7 +76,7 @@ class Add_friend extends Component {
 
         return (
             <div id="friends">
-                <Header  field={{title:'微信',path:"/add_friend"}}  />
+                <Header field={{ title: '微信', path: "/add_friend" }} />
                 <div style={{ fontSize: 14 }}>
                     <SearchBar
                         value={this.state.value}
@@ -79,7 +94,7 @@ class Add_friend extends Component {
                                         this.onAdd_friend(obj)
                                     }} key={index} className="friend_list">
                                         <div className="friend_list_logoWrap">
-                                            <img className="friend_list_logo" src={obj.logo_src ? obj.logo_src : "./image/icon_moren_face.png"} alt="" />
+                                            <img className="friend_list_logo" src={obj.logo ? obj.logo : "./image/icon_moren_face.png"} alt="" />
                                         </div>
                                         <div className="friend_name">{obj.username}</div>
                                     </div>
@@ -97,7 +112,13 @@ class Add_friend extends Component {
 
 function mapStateToProps(state) {
     return {
-        list_arr: state.userlists ? state.userlists : []
+        user_info: {
+            logo: state.save_info.logo,
+            username: state.save_info.username,
+            nickname: state.save_info.nickname,
+            id: state.save_info._id
+        },
+        save_info : state.save_info
     }
 }
 
