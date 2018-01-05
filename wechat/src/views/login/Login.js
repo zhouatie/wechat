@@ -34,13 +34,12 @@ class Login extends Component {
   bool = ""
   componentDidMount() {
     
-
   }
   successToast(value) {
-    Toast.success(value, 1);
+    Toast.success(value, 2);
   }
   failToast(value) {
-    Toast.fail(value, 1);
+    Toast.fail(value, 2);
   }
 
   changeHandle(event) {
@@ -62,11 +61,12 @@ class Login extends Component {
     }
     axios.post('/login', userInfo).then(res => {
       if (res.data.status === "success") {
-        console.log(res.data, 'res dat')
+          window.socket.emit('join',res.data.userInfo._id);
+console.log(res.data.userInfo,'loginuserinfo')
         _this.props.dispatch({ type: "SAVE_INFO", data: res.data.userInfo })
         _this.props.history.replace({ pathname: "/chatlist" });
       } else {
-        alert(res.data.message)
+        _this.successToast(res.data.message);
       }
     })
   }

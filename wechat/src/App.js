@@ -6,6 +6,8 @@ import Friends from './views/friends/Friends.js'
 import Add_friend from './views/add_friend/Add_friend.js'
 import UserCard from './views/usercard/UserCard.js'
 import Chat from './views/chat/Chat.js'
+import * as io from 'socket.io-client'
+
 
 import {
   BrowserRouter as Router,
@@ -13,6 +15,8 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
+
+window.socket = io('http://localhost:8888')
 
 class App extends Component {
 

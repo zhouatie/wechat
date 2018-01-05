@@ -3,6 +3,7 @@ import './chatlist.css'
 import Header from '../header/Header.js';
 import Footer from '../footer/Footer.js';
 import List from './List.js'
+import { connect } from 'react-redux'
 import { SearchBar, Toast } from 'antd-mobile';
 import axios from 'axios'
 
@@ -40,15 +41,19 @@ class Chatlist extends Component {
 
   }
   render() {
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const listItems = numbers.map((number) =>
-      <List key={number.toString()}
-        value={number} />
-    );
+    console.log(this.props.chatlists, '56789');
+    let chatlists = this.props.chatlists;
 
+    let lists = Object.keys(chatlists);
+
+    let listItems = lists.map((value,index) =>
+      <List key={index}
+        list_obj={chatlists[value]} />
+    );
+    console.log(listItems,'length')
     return (
       <div id="chatlist">
-        <Header field={{title:'微信',path:"/chatlist"}}  />
+        <Header field={{ title: '微信', path: "/chatlist" }} />
         <div style={{ fontSize: 14 }}>
           <SearchBar
             value={this.state.value}
@@ -66,4 +71,11 @@ class Chatlist extends Component {
   }
 }
 
-export default Chatlist;
+let mapStatesToProps = (state) => {
+  console.log(state, '?')
+  return {
+    chatlists: state.save_info.rooms
+  }
+}
+
+export default connect(mapStatesToProps)(Chatlist);

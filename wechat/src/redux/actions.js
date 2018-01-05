@@ -1,18 +1,15 @@
- /*
- * action 类型
- */
+/*
+* action 类型
+*/
 
 export const SAVE_INFO = 'SAVE_INFO';
 export const ADD_FRIEND = 'ADD_FRIEND';
+export const ADD_CHATS = 'ADD_CHATS'
 /*
  * 其它的常量
  */
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
-};
+
 
 /*
  * action 创建函数

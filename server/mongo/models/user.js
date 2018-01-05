@@ -6,7 +6,11 @@ var loginSchema = mongoose.Schema({
     password: String,
     nickname: String,
     friends: Array,
-    logo: String
+    logo: {
+        type: String,
+        default: './image/icon_moren_face.png'
+    },
+    rooms: Array
 });
 
 var User = mongoose.model('user', loginSchema);

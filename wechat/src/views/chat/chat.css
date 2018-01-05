@@ -82,11 +82,18 @@
     line-height: .20rem;
     position: relative;
     margin-bottom:.15rem;
-    animation: goup 0.3s;
 }
-@keyframes goup {
+@keyframes message_right {
     0% {
-        transform: translate(0, 100px);
+        transform: translate(100px,0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+@keyframes message_left {
+    0% {
+        transform: translate(-100px,0);
     }
     100% {
         transform: translate(0, 0);
@@ -94,6 +101,7 @@
 }
 .self_message {
     text-align: right;
+    animation: message_right 0.3s;
 }
 .self_message .message-logo-wrap {
     width:.5rem;
@@ -119,6 +127,7 @@
 }
 .other_message {
     text-align: left;
+    animation: message_left 0.3s;
 }
 .other_message .message-logo-wrap {
     width:.5rem;

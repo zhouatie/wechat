@@ -6,22 +6,9 @@ var io = require('socket.io')(http);
 var mongoose = require('./mongo/mongodb.js');
 app.use(bodyParser.json())
 
-var User = require("./mongo/models/login.js");
+var User = require("./mongo/models/user.js");
 
-// app.use(express.static("../wechat/build/"));
-// app.use(express.static("./public"));
-
-// let user = {};
-
-// var onlineUsers = {};
-// //当前在线人数
-// var onlineCount = 0;
-// io.on('connection', function (socket) {
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// });
+var online_arr = [];
 // 注册
 app.post("/register", function (req, res) {
 
@@ -47,6 +34,13 @@ app.post("/login", function (req, res) {
     var conn = {
         'username': req.body.username
     }
+    // if(online_arr.indexOf(req.body.username)>=0){
+    //     res.json({
+    //             status: 'error',
+    //             message: "用户已在线"
+    //         })
+    //         return;
+    // }
     User.findOne(conn, function (err, doc) {
         if (!doc || doc.length < 1) {
             res.json({
@@ -60,6 +54,7 @@ app.post("/login", function (req, res) {
             })
         } else {
             // user = doc;
+            online_arr.push(doc.username);
             res.json({
                 status: 'success',
                 message: "登录成功",
@@ -94,8 +89,7 @@ app.post('/makeFriend', (req, res) => {
 
     let self = req.body.self;
     let friend = req.body.friend;
-    console.log(self,1);
-    console.log(friend,2);
+
     User.update({ _id: friend.id }, { $addToSet: { friends: self } },(err,doc)=>{
 
     })

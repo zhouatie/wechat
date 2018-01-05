@@ -1,66 +1,40 @@
 import { combineReducers } from 'redux'
-import { SAVE_INFO ,ADD_FRIEND} from './actions'
+import { SAVE_INFO, ADD_FRIEND, ADD_CHATS } from './actions'
 
-// function visibilityFilter(state = SHOW_ALL, action) {
-//   switch (action.type) {
-//     case SET_VISIBILITY_FILTER:
-//       return action.filter
-//     default:
-//       return state
-//   }
-// }
 
-// function todos(state = [], action) {
-//   switch (action.type) {
-//     case ADD_TODO:
-//       return [
-//         ...state,
-//         {
-//           text: action.text,
-//           completed: false
-//         }
-//       ]
-//     case COMPLETE_TODO:
-//       return [
-//         ...state.slice(0, action.index),
-//         Object.assign({}, state[action.index], {
-//           completed: true
-//         }),
-//         ...state.slice(action.index + 1)
-//       ]
-//     default:
-//       return state
-//   }
-// }
-function save_info(state={},action){
+
+function save_info(state = {}, action) {
     switch (action.type) {
         case SAVE_INFO:
-        return {...state,...action.data};
-        break;
+            return { ...state, ...action.data };
+            break;
         case ADD_FRIEND:
-        return {...state,friends:[...state.friends,action.data]}
+            return { ...state, friends: [...state.friends, action.data] }
+            break;
+        case ADD_CHATS:
+        console.log(action.data.room_id,'rrom id')
+            var room_key = action.data.room_id;
+            var room = state.rooms[room_key];
+
+            if(room){
+                room.push(action.data)
+            }else {
+                room = [action.data];
+            };
+            state.rooms[room_key] = room;
+
+            return state;
+
+            break;
         default:
-        return state
+            return state
     }
 }
 
-// function friends(state=[],action){
-//     switch(action.type){
-
-//         case ADD_FRIEND:
-//         return [...state,{
-//             nickname:action.nickname,
-//             id:action.id
-//         }]
-//         break;
-//         default:
-//         return state;
-//     }
-// }
 
 
 const Reducer = combineReducers({
-  save_info
+    save_info
 })
 
 export default Reducer

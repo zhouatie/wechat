@@ -36,7 +36,6 @@ class Register extends Component {
 
   }
   componentWillMount() {
-    console.log(this.store, 'strore')
 
   }
   username = ""
@@ -54,20 +53,19 @@ class Register extends Component {
     let userInfo = {
       username: this.username,
       password: this.password,
-      nickname: this.nickname,
-      logo: './image/icon_moren_face.png'
+      nickname: this.nickname
     }
 
     if (!userInfo.username || !userInfo.password || !userInfo.nickname) {
       this.failToast("请输入内容！！！")
     }
-    console.log(userInfo, 'reg userinfo')
+
     axios.post('/register', userInfo).then(res => {
       if (res.data.status === "success") {
         _this.props.dispatch({ type: "SAVE_INFO", data: res.data.userInfo })
         _this.props.history.replace("/chatlist")
       } else {
-        alert('error')
+        _this.failToast("添加失败！！！");
       }
     })
   }
@@ -86,11 +84,9 @@ class Register extends Component {
       wrapProps,
     },
       (buttonIndex) => {
-        console.log(buttonIndex)
         if (buttonIndex === 0) {
           this.props.history.replace("/login")
         }
-        // this.setState({ clicked: BUTTONS[buttonIndex] });
       });
   }
 
