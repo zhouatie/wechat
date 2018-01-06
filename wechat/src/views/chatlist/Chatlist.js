@@ -41,16 +41,8 @@ class Chatlist extends Component {
 
   }
   render() {
-    console.log(this.props.chatlists, '56789');
-    let chatlists = this.props.chatlists;
-
-    let lists = Object.keys(chatlists);
-
-    let listItems = lists.map((value,index) =>
-      <List key={index}
-        list_obj={chatlists[value]} />
-    );
-    console.log(listItems,'length')
+    console.log(this.props.chatlists,44)
+    
     return (
       <div id="chatlist">
         <Header field={{ title: '微信', path: "/chatlist" }} />
@@ -63,7 +55,12 @@ class Chatlist extends Component {
           />
         </div>
         <div className="listWrap">
-          {listItems}
+          {
+            this.props.chatlists.map((obj, index) =>
+              <List key={index}
+                list_obj={obj} />
+            )
+          }
         </div>
         <Footer />
       </div>
@@ -72,7 +69,6 @@ class Chatlist extends Component {
 }
 
 let mapStatesToProps = (state) => {
-  console.log(state, '?')
   return {
     chatlists: state.save_info.rooms
   }

@@ -12,17 +12,17 @@ function save_info(state = {}, action) {
             return { ...state, friends: [...state.friends, action.data] }
             break;
         case ADD_CHATS:
-        console.log(action.data.room_id,'rrom id')
-            var room_key = action.data.room_id;
-            var room = state.rooms[room_key];
-
-            if(room){
-                room.push(action.data)
+            let room_key = action.data.room_id,
+                room_index = state.rooms.findIndex(T=>T[room_key]);
+                
+            if( room_index>-1 ){
+                state.rooms.unshift(state.rooms.splice(room_index,1)[0]);
+                
+                state.rooms[0][room_key].push(action.data);
             }else {
-                room = [action.data];
-            };
-            state.rooms[room_key] = room;
-
+                state.rooms.unshift({[room_key]:[action.data]})
+            }
+            
             return state;
 
             break;

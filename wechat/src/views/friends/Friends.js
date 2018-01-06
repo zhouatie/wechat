@@ -15,7 +15,6 @@ class Friends extends Component {
         }
     }
     toUserCard = (obj) => {
-        console.log(obj.id,'Friends.js');
         this.props.history.push({
             pathname:"/userCard",
             params:{
@@ -51,7 +50,7 @@ class Friends extends Component {
 
     
     render() {
-        console.log(this.props,'props')
+
         return (
             <div id="friends">
                 <Header field={{title:'微信',path:"/friends"}} />

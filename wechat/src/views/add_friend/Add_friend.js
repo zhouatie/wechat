@@ -41,8 +41,8 @@ class Add_friend extends Component {
     }
     onAdd_friend = (obj) => {
         let _this = this;
-        let bool = this.props.save_info.friends.some((obj)=>{
-            if(obj._id==obj._id){
+        let bool = this.props.save_info.friends.some((friend)=>{
+            if(friend.id==obj._id){
                 _this.failToast("已是您的好友！")
                 return true;
             }

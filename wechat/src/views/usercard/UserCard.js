@@ -5,7 +5,6 @@ import Header from '../header/Header.js'
 class InfoCard extends Component {
     constructor(props){
         super(props)
-        console.log(props,'usercard')
     }
     toChat = () => {
         this.props.history.replace({

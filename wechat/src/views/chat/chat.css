@@ -18,7 +18,7 @@
     bottom:0.5rem;
     width:100%;
     background: #ebebeb;
-    overflow: hidden;
+    overflow:auto;
 }
 .chat .chat-content .chat-bottom {
     position: absolute;
