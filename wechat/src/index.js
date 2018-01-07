@@ -7,15 +7,18 @@ import App from './App';
 // import Login from './views/login/Login'
 // import Chatlist from './views/chatlist/Chatlist'
 import { createStore } from 'redux'
+
 import { Provider } from 'react-redux'
 import Reducer from './redux/reducers'
 import 'antd-mobile/dist/antd-mobile.css';
 
-
-let store = createStore(Reducer);
+const store = createStore(
+   Reducer, /* preloadedState, */
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+ );
 window.store = store;
 
-let unsubscribe = store.subscribe(() =>
+let unsubscribe = store.subscribe((data) =>
   console.log(store.getState())
 )
 ReactDOM.render((

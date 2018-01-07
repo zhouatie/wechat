@@ -11,12 +11,27 @@
     height:.5rem;
     border-radius: .04rem;
     background: #dcdfe1;
-    overflow: hidden;
     flex-grow: 0;
+    position: relative;
 }
 .list .list_logo_wrap img {
     width:100%;
     height:100%;
+}
+.newInfo_num {
+    position:absolute;
+    right:0;
+    top:0;
+    height:.16rem;
+    line-height: .16rem;
+    min-width: .16rem;
+    border-radius: .08rem;
+    background: red;
+    color:#fff;
+    text-align: center;
+    font-size:.12rem;
+    margin-right: -.08rem;
+    margin-top: -.08rem;
 }
 .list .list_text_wrap {
     flex-grow: 1;

@@ -36,13 +36,42 @@ class Chatlist extends Component {
   clear = () => {
     this.setState({ value: '' });
   }
+  toChat = (id)=> {
+    let obj = this.props.friends.find(o=>o.id==id)
+    this.props.history.push({
+      pathname: "/chat",
+      params: {
+        friend: obj
+      }
+    })
+  }
+  componentDidMount() {
+    let _this = this;
 
-  componentWillMount() {
+    window.socket.on("common_message", function (from_id, to_id, data) {
+      if (window.location.pathname == "/chat" || to_id != _this.props.self_id) return false;
+      let from_person = _this.props.friends.find(o => o.id == from_id);
+
+      let info_data = {
+        room_id: from_id,
+        nickname: from_person.nickname,
+        date: new Date().getTime(),
+        info: data,
+        username: from_person.username,
+        logo: from_person.logo,
+        has_read: false,
+      }
+
+      _this.props.dispatch({ type: "ADD_CHATS", data: info_data })
+      _this.forceUpdate();
+    })
 
   }
+  componentWillUnmount() {
+    window.socket._callbacks.$common_message = [];
+  }
+
   render() {
-    console.log(this.props.chatlists,44)
-    
     return (
       <div id="chatlist">
         <Header field={{ title: '微信', path: "/chatlist" }} />
@@ -57,7 +86,7 @@ class Chatlist extends Component {
         <div className="listWrap">
           {
             this.props.chatlists.map((obj, index) =>
-              <List key={index}
+              <List onChat={this.toChat} key={index}
                 list_obj={obj} />
             )
           }
@@ -70,7 +99,9 @@ class Chatlist extends Component {
 
 let mapStatesToProps = (state) => {
   return {
-    chatlists: state.save_info.rooms
+    self_id: state.save_info._id,
+    chatlists: state.save_info.rooms,
+    friends: state.save_info.friends
   }
 }
 

@@ -101,6 +101,8 @@
 }
 .self_message {
     text-align: right;
+}
+.animate_right {
     animation: message_right 0.3s;
 }
 .self_message .message-logo-wrap {
@@ -127,6 +129,8 @@
 }
 .other_message {
     text-align: left;
+}
+.animate_left {
     animation: message_left 0.3s;
 }
 .other_message .message-logo-wrap {

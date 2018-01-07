@@ -15,10 +15,10 @@ class Chat extends Component {
 
     componentDidMount() {
         this.loadSocket();
+
         this.setState({
             chat_person: this.props.history.location.params.friend
         });
-
 
         let html = "",
             message_wrap = document.getElementById("message-wrap"),
@@ -32,6 +32,9 @@ class Chat extends Component {
 
         message_wrap.innerHTML = html;
         if (message_wrap.children.length > 0) message_wrap.children[message_wrap.children.length - 1].scrollIntoView();
+
+        // 将该好友的消息设为已读
+        infos.map(o=>o.has_read=true);
     }
 
     info_tpl(classN, logo, info) {
@@ -44,12 +47,12 @@ class Chat extends Component {
     }
 
     loadSocket() {
+        if (window.socket._callbacks.$private_message) return false;
+
         let _this = this,
             self_id = this.props.self_id;
-
-
         window.socket.on("private_message", function (from_id, to_id, data) {
-            if (from_id != _this.state.chat_person.id) return false;
+            if (window.location.pathname != "/chat" || from_id != _this.state.chat_person.id) return false;
             _this.appendMsg(data, false)
         })
     }
@@ -57,51 +60,61 @@ class Chat extends Component {
         this.appendMsg({}, true)
     }
     appendMsg(message, self) {
+        let message_wrap = document.getElementById("message-wrap");
+        if (!message_wrap) return false;
+
         let _this = this,
-            message_wrap = document.getElementById("message-wrap"),
             div = document.createElement("div"),
             msg = self ? this.refs.textarea.value : message;
 
         if (self) {
 
-            div.className = "self_message message";
+            div.className = "self_message message animate_right";
             div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.props.self_logo + '"/></div><div class="message-info-wrap">' + msg + '</div>';
             window.socket.emit('private_message', _this.props.self_id, _this.state.chat_person.id, msg);
             this.refs.textarea.value = "";
 
         } else {
 
-            div.className = "other_message message";
+            div.className = "other_message message animate_left";
             div.innerHTML = '<div class="message-logo-wrap"><img src="' + this.state.chat_person.logo + '"/></div><div class="message-info-wrap">' + msg + '</div>';
 
         }
 
+
         message_wrap.appendChild(div);
         div.scrollIntoView();
 
-        let data = {
-            room_id: this.state.chat_person.id,
-            nickname: this.state.chat_person.nickname,
-            date: new Date().getTime(),
-            info: msg,
-            username: self ? this.props.self_username : this.state.chat_person.username,
-            logo: self ? this.props.self_logo : this.state.chat_person.logo
+        if (self) {
+
+            let data = {
+                room_id: this.state.chat_person.id,
+                nickname: this.state.chat_person.nickname,
+                date: new Date().getTime(),
+                info: msg,
+                username: self ? this.props.self_username : this.state.chat_person.username,
+                logo: self ? this.props.self_logo : this.state.chat_person.logo,
+                has_read: true
+            }
+
+            this.props.dispatch({ type: "ADD_CHATS", data: data })
         }
 
-        this.props.dispatch({ type: "ADD_CHATS", data: data })
-
     }
-
+    onBack () {
+        this.props.history.goBack();
+    }
     componentWillUnmount() {
 
     }
 
     render() {
+        console.log(this, 'this')
         let self_room = this.props.self_rooms[this.state.chat_person.id];
 
         return (
             <div className="chat">
-                <Header field={{ title: this.state.chat_person.username, path: "/chat" }} />
+                <Header onBack={this.onBack.bind(this)} field={{ title: this.state.chat_person.username, path: "/chat" }} />
                 <div className="chat-content">
                     <div className="text-wrap">
                         <div id="message-wrap">

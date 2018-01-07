@@ -36,14 +36,13 @@ io.on('connection', function (socket) {
     if (target) {
 
       target.emit("private_message", from, to, msg);
+      target.emit("common_message", from, to, msg);
     }
   });
 
   //连接断开
   socket.on('disconnect', function (data) {
-    console.log(Object.keys(arrAllSocket), 'arr1');
     console.log(socket.username,66666666666)
     delete(arrAllSocket[socket.username]);
-    console.log(Object.keys(arrAllSocket), 'arr2');
   });
 });
