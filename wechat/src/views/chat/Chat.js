@@ -53,7 +53,7 @@ class Chat extends Component {
             self_id = this.props.self_id;
         window.socket.on("private_message", function (from_id, to_id, data) {
             console.log(window.location.pathname=='/chatlist' , to_id != self_id,"收到消息")
-            if (window.location.pathname=='/chatlist' || to_id != self_id) return false;
+            if (window.location.pathname!='/chat' || to_id != self_id) return false;
             _this.appendMsg(data, false)
         })
     }
