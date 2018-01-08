@@ -36,8 +36,8 @@ class Chatlist extends Component {
   clear = () => {
     this.setState({ value: '' });
   }
-  toChat = (id)=> {
-    let obj = this.props.friends.find(o=>o.id==id)
+  toChat = (id) => {
+    let obj = this.props.friends.find(o => o.id == id)
     this.props.history.push({
       pathname: "/chat",
       params: {
@@ -46,6 +46,7 @@ class Chatlist extends Component {
     })
   }
   componentDidMount() {
+    window.socket._callbacks.$common_message = [];
     let _this = this;
 
     window.socket.on("common_message", function (from_id, to_id, data) {
@@ -62,13 +63,12 @@ class Chatlist extends Component {
         has_read: false,
       }
 
-      _this.props.dispatch({ type: "ADD_CHATS", data: info_data })
-      _this.forceUpdate();
+      window.store.dispatch({ type: "ADD_CHATS", data: info_data })
     })
 
   }
   componentWillUnmount() {
-    window.socket._callbacks.$common_message = [];
+
   }
 
   render() {

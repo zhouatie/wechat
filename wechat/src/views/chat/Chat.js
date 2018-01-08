@@ -34,7 +34,7 @@ class Chat extends Component {
         if (message_wrap.children.length > 0) message_wrap.children[message_wrap.children.length - 1].scrollIntoView();
 
         // 将该好友的消息设为已读
-        infos.map(o=>o.has_read=true);
+        infos.map(o => o.has_read = true);
     }
 
     info_tpl(classN, logo, info) {
@@ -52,7 +52,8 @@ class Chat extends Component {
         let _this = this,
             self_id = this.props.self_id;
         window.socket.on("private_message", function (from_id, to_id, data) {
-            if (window.location.pathname != "/chat" || from_id != _this.state.chat_person.id) return false;
+            console.log(window.location.pathname=='/chatlist' , to_id != self_id,"收到消息")
+            if (window.location.pathname=='/chatlist' || to_id != self_id) return false;
             _this.appendMsg(data, false)
         })
     }
@@ -60,10 +61,9 @@ class Chat extends Component {
         this.appendMsg({}, true)
     }
     appendMsg(message, self) {
-        let message_wrap = document.getElementById("message-wrap");
-        if (!message_wrap) return false;
 
         let _this = this,
+            message_wrap = document.getElementById("message-wrap"),
             div = document.createElement("div"),
             msg = self ? this.refs.textarea.value : message;
 
@@ -81,27 +81,30 @@ class Chat extends Component {
 
         }
 
+        // 默认消息未读
+        let read_bool = false;
+        if (message_wrap) {
+            message_wrap.appendChild(div);
+            div.scrollIntoView();
+            // 消息插入dom中，表示已读
+            read_bool = true;
+        };
 
-        message_wrap.appendChild(div);
-        div.scrollIntoView();
 
-        if (self) {
-
-            let data = {
-                room_id: this.state.chat_person.id,
-                nickname: this.state.chat_person.nickname,
-                date: new Date().getTime(),
-                info: msg,
-                username: self ? this.props.self_username : this.state.chat_person.username,
-                logo: self ? this.props.self_logo : this.state.chat_person.logo,
-                has_read: true
-            }
-
-            this.props.dispatch({ type: "ADD_CHATS", data: data })
+        let data = {
+            room_id: this.state.chat_person.id,
+            nickname: this.state.chat_person.nickname,
+            date: new Date().getTime(),
+            info: msg,
+            username: self ? this.props.self_username : this.state.chat_person.username,
+            logo: self ? this.props.self_logo : this.state.chat_person.logo,
+            has_read: read_bool
         }
 
+        this.props.dispatch({ type: "ADD_CHATS", data: data })
+
     }
-    onBack () {
+    onBack() {
         this.props.history.goBack();
     }
     componentWillUnmount() {

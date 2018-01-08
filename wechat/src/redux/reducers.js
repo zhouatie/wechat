@@ -14,7 +14,7 @@ function save_info(state = {}, action) {
         case ADD_CHATS:
             let room_key = action.data.room_id,
                 room_index = state.rooms.findIndex(T=>T[room_key]);
-                
+                console.log(room_index,'room_index')
             if( room_index>-1 ){
                 state.rooms.unshift(state.rooms.splice(room_index,1)[0]);
                 
