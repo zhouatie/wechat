@@ -64,7 +64,6 @@ class Chatlist extends Component {
       }
 
       window.store.dispatch({ type: "ADD_CHATS", data: info_data })
-      if (window.location.pathname == "/chatlist") _this.forceUpdate()
     })
 
   }

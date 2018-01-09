@@ -34,7 +34,8 @@ class Chat extends Component {
         if (message_wrap.children.length > 0) message_wrap.children[message_wrap.children.length - 1].scrollIntoView();
 
         // 将该好友的消息设为已读
-        infos.map(o => o.has_read = true);
+        //infos.map(o => o.has_read = true);
+        window.store.dispatch({type:"HAS_READ",user:friend_id})
     }
 
     info_tpl(classN, logo, info) {
@@ -52,8 +53,7 @@ class Chat extends Component {
         let _this = this,
             self_id = this.props.self_id;
         window.socket.on("private_message", function (from_id, to_id, data) {
-            console.log(window.location.pathname=='/chatlist' , to_id != self_id,"收到消息")
-            if (window.location.pathname!='/chat' || to_id != self_id) return false;
+            if (window.location.pathname != '/chat' || to_id != self_id) return false;
             _this.appendMsg(data, false)
         })
     }

@@ -1,21 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'antd-mobile/dist/antd-mobile.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
-// import Home from './views/Home'
-// import Login from './views/login/Login'
-// import Chatlist from './views/chatlist/Chatlist'
-import { createStore } from 'redux'
+
+import { createStore, applyMiddleware } from 'redux'
 
 import { Provider } from 'react-redux'
 import Reducer from './redux/reducers'
-import 'antd-mobile/dist/antd-mobile.css';
+
+import thunkMiddleware from 'redux-thunk'
 
 const store = createStore(
-   Reducer, /* preloadedState, */
-window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
- );
+  Reducer, /* preloadedState, */
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 window.store = store;
 
 let unsubscribe = store.subscribe((data) =>
@@ -23,7 +23,7 @@ let unsubscribe = store.subscribe((data) =>
 )
 ReactDOM.render((
   <Provider store={store} >
-    <App/>
+    <App />
   </Provider>
 ), document.getElementById('root'));
 registerServiceWorker();
