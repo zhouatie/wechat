@@ -112,7 +112,6 @@ class Chat extends Component {
     }
 
     render() {
-        console.log(this, 'this')
         let self_room = this.props.self_rooms[this.state.chat_person.id];
 
         return (

@@ -6,7 +6,7 @@ class List extends Component {
         super(props)
     }
     changeDate(date) {
-        return date.toLocaleString();
+        return new Date(date).toLocaleTimeString().slice(0,-3);
     }
     render() {
 

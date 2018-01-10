@@ -42,7 +42,6 @@ io.on('connection', function (socket) {
 
   //连接断开
   socket.on('disconnect', function (data) {
-    console.log(socket.username,66666666666)
     delete(arrAllSocket[socket.username]);
   });
 });
