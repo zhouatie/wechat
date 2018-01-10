@@ -6,6 +6,9 @@ import Friends from './views/friends/Friends.js'
 import Add_friend from './views/add_friend/Add_friend.js'
 import UserCard from './views/usercard/UserCard.js'
 import Chat from './views/chat/Chat.js'
+import User from './views/user/User.js'
+import Search from './views/search/Search.js'
+
 import * as io from 'socket.io-client'
 
 
@@ -41,6 +44,10 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <PrivateRoute path="/chatlist" component={Chatlist} />
           <PrivateRoute path="/friends" component={Friends} />
+          <PrivateRoute path="/search" component={Search} />
+          <PrivateRoute path="/user" component={User} />
+
+          
           <PrivateRoute path="/more" component={Friends} />
           <PrivateRoute path="/add_friend" component={Add_friend} />
           <PrivateRoute path="/userCard" component={UserCard} />
