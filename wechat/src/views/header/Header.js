@@ -21,7 +21,7 @@ class Header extends Component {
         Left = <Link to="/friends" className="left iconfont icon-back">通讯录</Link>;
         break;
       default:
-        Left = <Link to="/friends"></Link>;
+        Left = <span></span>;
     }
 
     let Right = null;
@@ -38,6 +38,8 @@ class Header extends Component {
       case "/chat":
         Right = <Link to="/infoSetting" className="right iconfont icon-chat_detail" replace />;
         break;
+        default:
+        Right = <span></span>;
     }
     return (
       <div id="header">

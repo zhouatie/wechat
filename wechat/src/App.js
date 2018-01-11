@@ -3,11 +3,12 @@ import Login from './views/login/Login'
 import Register from './views/register/Register'
 import Chatlist from './views/chatlist/Chatlist'
 import Friends from './views/friends/Friends.js'
-import Add_friend from './views/add_friend/Add_friend.js'
-import UserCard from './views/usercard/UserCard.js'
-import Chat from './views/chat/Chat.js'
-import User from './views/user/User.js'
 import Search from './views/search/Search.js'
+import User from './views/user/User.js'
+import UserCard from './views/usercard/UserCard.js'
+import Add_friend from './views/add_friend/Add_friend.js'
+import Chat from './views/chat/Chat.js'
+import EditInfo from './views/editInfo/EditInfo.js'
 
 import * as io from 'socket.io-client'
 
@@ -42,16 +43,15 @@ class App extends Component {
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <PrivateRoute path="/chatlist" component={Chatlist} />
-          <PrivateRoute path="/friends" component={Friends} />
-          <PrivateRoute path="/search" component={Search} />
-          <PrivateRoute path="/user" component={User} />
-
-          
-          <PrivateRoute path="/more" component={Friends} />
-          <PrivateRoute path="/add_friend" component={Add_friend} />
-          <PrivateRoute path="/userCard" component={UserCard} />
-          <PrivateRoute path="/chat" component={Chat} />
+          <PrivateRoute exact={true} path="/chatlist" component={Chatlist} />
+          <PrivateRoute exact={true} path="/friends" component={Friends} />
+          <PrivateRoute exact={true} path="/search" component={Search} />
+          <PrivateRoute exact={true} path="/user" component={User} />
+          <PrivateRoute exact={true} path="/more" component={Friends} />
+          <PrivateRoute exact={true} path="/add_friend" component={Add_friend} />
+          <PrivateRoute exact={true} path="/userCard" component={UserCard} />
+          <PrivateRoute exact={true} path="/chat" component={Chat} />
+          <PrivateRoute exact={true} path="/eidtInfo" component={EditInfo} />
           <Redirect exact={true} from='/' to='/login' />
         </Switch>
       </Router>

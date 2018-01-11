@@ -54,7 +54,7 @@ class Friends extends Component {
         return (
             <div id="friends">
                 <Header field={{title:'微信',path:"/friends"}} />
-                <div>
+                <div style={{overflow:'auto',height:"100%"}}>
                     <div style={{ fontSize: 14 }}>
                         <SearchBar
                             value={this.state.value}

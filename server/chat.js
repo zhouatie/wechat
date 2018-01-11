@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
     var target = arrAllSocket[to];
 
     if (target) {
-
+console.log(target.username)
       target.emit("private_message", from, to, msg);
       target.emit("common_message", from, to, msg);
     }

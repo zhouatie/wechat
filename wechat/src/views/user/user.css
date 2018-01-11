@@ -1,0 +1,76 @@
+#user .arrow .iconfont {
+    color:#c7c7cc;
+}
+#user .edit_userInfo {
+    padding:.1rem .12rem;
+    background: #fff;
+    display: block;
+    display: flex;
+    color:#000;
+}
+#user .edit_userInfo .logo-wrap {
+    width:.55rem;
+    height:.55rem;
+    border-radius: .03rem;
+    overflow: hidden;
+    flex-grow: 0;
+}
+#user .edit_userInfo .logo-wrap img {
+    height:100%;
+    width:100%;
+}
+#user .edit_userInfo .textWrap {
+    flex-grow: 1;
+    padding-left:.1rem;
+    font-size:.13rem;
+    height:.55rem;
+    line-height: .24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+#user .edit_userInfo .arrow {
+    flex-grow:0;
+    display: flex;
+    align-items: center;
+}
+#user .userInfo-content {
+    padding-top:.12rem;
+}
+#user .items-wrap {
+    border-top:.01rem solid #e4e4e7;
+    border-bottom:.01rem solid #e4e4e7;
+    padding-left:0.13rem;
+    background: #fff;
+    margin-top:.18rem;
+}
+#user .items-wrap .user-item {
+    display: flex;
+    height:.4rem;
+    border-bottom:.01rem solid #f0f0f0;
+    padding-right: .12rem;
+}
+#user .items-wrap .icon-wrap {
+    flex-grow: 0;
+    color:#10aeff;
+    width:.2rem;
+}
+#user .items-wrap .iconfont {
+    width:.2rem;
+}
+#user .items-wrap .icon-wrap .shoucang img {
+    display: inline-block;
+    height:100%;
+    width:.2rem;
+}
+#user .items-wrap .textWrap {
+    flex-grow: 1;
+    padding-left: .16rem;
+}
+
+#user .items-wrap>* {
+    line-height: .4rem;
+}
+#user .items-wrap .user-item:last-of-type {
+    border-bottom:none;
+}

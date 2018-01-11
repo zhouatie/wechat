@@ -53,14 +53,14 @@ class Chat extends Component {
         let _this = this,
             self_id = this.props.self_id;
         window.socket.on("private_message", function (from_id, to_id, data) {
-            if (window.location.pathname != '/chat' || to_id != self_id) return false;
-            _this.appendMsg(data, false)
+            if (window.location.pathname != '/chat' || to_id != self_id ) return false;
+            _this.appendMsg(data, false ,from_id)
         })
     }
     onSend = () => {
         this.appendMsg({}, true)
     }
-    appendMsg(message, self) {
+    appendMsg(message, self,from_id) {
 
         let _this = this,
             message_wrap = document.getElementById("message-wrap"),
@@ -83,7 +83,7 @@ class Chat extends Component {
 
         // 默认消息未读
         let read_bool = false;
-        if (message_wrap) {
+        if (message_wrap && (self || from_id==this.state.chat_person.id) ){
             message_wrap.appendChild(div);
             div.scrollIntoView();
             // 消息插入dom中，表示已读

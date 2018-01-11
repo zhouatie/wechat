@@ -62,6 +62,7 @@ class Register extends Component {
 
     axios.post('/register', userInfo).then(res => {
       if (res.data.status === "success") {
+        window.socket.emit('join', res.data.userInfo._id);
         _this.props.dispatch({ type: "SAVE_INFO", data: res.data.userInfo })
         _this.props.history.replace("/chatlist")
       } else {
