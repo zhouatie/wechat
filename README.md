@@ -8,6 +8,8 @@
 
 react+redux+react-router4+socket.io+axios+node.js+mongodb
 
+
+
 ## 说明
 
 > 喜欢的话可以帮忙点个star
@@ -17,6 +19,8 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 > 如果npm install太慢导致有些npm依赖包下载失败 你可以看控制台的报错信息，再手动npm install 具体的开发包，推荐使用淘宝的注册源，直接运行
 
 `npm install -g cnpm --registry=https://registry.npm.taobao.org`
+
+
 
 ## 目标功能
 - [x] 注册 -- 完成
@@ -31,6 +35,8 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 - [ ] 个人信息的编辑
 - [ ] 朋友圈
  
+
+
 ## 总结
 1.之前写vue项目的时候，在main.js文件中写express接口，就行了，就不存在跨域问题。在create-react-app启动的静态资源服务中，实在找不到哪里可以写接口，找了好久的node_modules ，都不知道在哪里下手。好在create-react-app中的package.json中加上：`proxy:http://localhost:4000`就能解决跨域问题了。
 
@@ -42,6 +48,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 
 
 4.我是通过redux来更新消息列表，中间出现store数据更新了，组件却不渲染。后来求助好友后，原来是我强制修改了state导致页面无法即使刷新。
+
 
 
 ## 参考资料
