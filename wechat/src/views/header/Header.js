@@ -3,8 +3,8 @@ import './header.css'
 import { Link } from 'react-router-dom'
 
 class Header extends Component {
-  componentDidMount(){
-    
+  componentDidMount() {
+
   }
   render() {
 
@@ -19,6 +19,12 @@ class Header extends Component {
         break;
       case "/userCard":
         Left = <Link to="/friends" className="left iconfont icon-back">通讯录</Link>;
+        break;
+      case "/editInfo":
+        Left = <Link to="/user" className="left iconfont icon-back">我</Link>;
+        break;
+      case "/uploadLogo":
+        Left = <Link to="/editInfo" className="left iconfont icon-back">个人信息</Link>;
         break;
       default:
         Left = <span></span>;
@@ -36,9 +42,12 @@ class Header extends Component {
         Right = <Link to="/infoSetting" className="right iconfont icon-info_setting" />;
         break;
       case "/chat":
-        Right = <Link to="/infoSetting" className="right iconfont icon-chat_detail" replace />;
+        Right = <Link to="/infoSetting" className="right iconfont icon-chat_detail" />;
         break;
-        default:
+      case "/uploadLogo":
+        Right = <span onClick={this.props.onOption} className="right iconfont icon-info_setting" ></span>;
+        break;
+      default:
         Right = <span></span>;
     }
     return (

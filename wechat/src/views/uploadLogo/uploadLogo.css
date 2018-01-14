@@ -1,0 +1,12 @@
+#uploadLogo {
+    background: #000;
+}
+#uploadLogo .uploadBg {
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#uploadLogo img {
+    width:100%;
+}
