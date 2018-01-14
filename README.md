@@ -13,6 +13,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 >喜欢的话可以帮忙点歌star
 >开发环境：macbook pro 、vscode、Chrome、node
 >如果npm install太慢导致有些npm依赖包下载失败 你可以看控制台的报错信息，再手动npm install 具体的开发包，推荐使用淘宝的注册源，直接运行
+
 `npm install -g cnpm --registry=https://registry.npm.taobao.org`
 
 ## 目标功能
