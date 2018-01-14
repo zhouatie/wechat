@@ -1,14 +1,14 @@
-#前言
+# 前言
 
 这个项目是我自学react+redux的第一个项目，并结合自己之前所学的node+mongodb，来模仿开发微信客户端。利用每天下班时间边学习边写。由于本人技术水平有限，所以几乎没有什么高级代码。目前还没有写完。本项目会持续更新...
 
 
 
-##技术栈
+## 技术栈
 
 react+redux+react-router4+socket.io+axios+node.js+mongodb
 
-##说明
+## 说明
 
 >喜欢的话可以帮忙点歌star
 >开发环境：macbook pro 、vscode、Chrome、node
@@ -28,7 +28,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 - [ ] 个人信息的编辑
 - [ ] 朋友圈
  
-##总结
+## 总结
 1.之前写vue项目的时候，在main.js文件中写express接口，就行了，就不存在跨域问题。在create-react-app启动的静态资源服务中，实在找不到哪里可以写接口，找了好久的node_modules ，都不知道在哪里下手。好在create-react-app中的package.json中加上：`proxy:http://localhost:4000`就能解决跨域问题了。
 
 
@@ -41,7 +41,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 4.我是通过redux来更新消息列表，中间出现store数据更新了，组件却不渲染。后来求助好友后，原来是我强制修改了state导致页面无法即使刷新。
 
 
-##参考资料
+## 参考资料
 《深入浅出React和Redux》-- 程墨
 《MongoDB实战（第二版）》
 [react-router](https://reacttraining.com/react-router/web/guides/philosophy)
