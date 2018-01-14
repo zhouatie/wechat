@@ -37,6 +37,11 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
  
 
 
+## 部分截图
+![](./data/wechat_2018-01-14.gif)
+
+
+
 ## 总结
 1.之前写vue项目的时候，在main.js文件中写express接口，就行了，就不存在跨域问题。在create-react-app启动的静态资源服务中，实在找不到哪里可以写接口，找了好久的node_modules ，都不知道在哪里下手。好在create-react-app中的package.json中加上：`proxy:http://localhost:4000`就能解决跨域问题了。
 
