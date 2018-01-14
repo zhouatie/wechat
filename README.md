@@ -43,9 +43,15 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 
 ## 参考资料
 《深入浅出React和Redux》-- 程墨
+
 《MongoDB实战（第二版）》
+
 [react-router](https://reacttraining.com/react-router/web/guides/philosophy)
+
 [react](https://reactjs.org/docs/hello-world.html)
+
 [redux中文文档](http://www.redux.org.cn/index.html)
+
 [mongoose](http://www.nodeclass.com/api/mongoose.html#guide_connections)
+
 [基于 Vue、Nodejs、Socket.io 的聊天应用](https://juejin.im/entry/5923e2242f301e006b2a7827)
