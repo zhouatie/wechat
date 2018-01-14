@@ -10,7 +10,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 
 ## 说明
 
-> 喜欢的话可以帮忙点歌star
+> 喜欢的话可以帮忙点个star
 
 > 开发环境：macbook pro 、vscode、Chrome、node
 
