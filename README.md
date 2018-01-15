@@ -58,6 +58,24 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 
 
 
+5.formdata上传文件，相当于表单上传，头部为`Content-Type:multipart/form-data`,这点要注意了！
+> 注意: Multer 不会处理任何非 multipart/form-data 类型的表单数据。具体见   [multer](https://www.npmjs.com/package/multer)
+```
+var multer = require('multer');
+var upload = multer({ dest: '../wechat/public/logos' }); // dest 指的是图片存到哪个文件夹里
+
+// 上传头像
+app.post("/uploadLogo", upload.single("avatar"), (req, res) => {
+    User.update({ _id: req.body.id }, { $set: { logo: './logos/' + req.file.filename } }, function () {
+        res.send({
+            status: "success",
+            url: './logos/' + req.file.filename
+        })
+    })
+})
+```
+
+
 ## 参考资料
 《深入浅出React和Redux》-- 程墨
 
@@ -72,3 +90,5 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 [mongoose](http://www.nodeclass.com/api/mongoose.html#guide_connections)
 
 [基于 Vue、Nodejs、Socket.io 的聊天应用](https://juejin.im/entry/5923e2242f301e006b2a7827)
+
+[multer](https://www.npmjs.com/package/multer)
