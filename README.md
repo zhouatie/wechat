@@ -40,6 +40,8 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 ## 部分截图
 ![](./data/wechat_2018-01-14.gif)
 
+####上传头像
+![](./data/uploadLogo.gif)
 
 
 ## 总结

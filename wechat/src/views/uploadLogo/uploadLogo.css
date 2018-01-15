@@ -1,7 +1,7 @@
 #uploadLogo {
     background: #000;
 }
-#uploadLogo .uploadBg {
+#uploadLogo .logo_wrap {
     height:100%;
     display: flex;
     justify-content: center;

@@ -45,7 +45,7 @@ class Header extends Component {
         Right = <Link to="/infoSetting" className="right iconfont icon-chat_detail" />;
         break;
       case "/uploadLogo":
-        Right = <span onClick={this.props.onOption} className="right iconfont icon-info_setting" ></span>;
+        Right = <label className="right iconfont icon-upload" ><input name="avatar" accept='image/*' onChange={this.props.onUpload} type="file"/></label>;
         break;
       default:
         Right = <span></span>;

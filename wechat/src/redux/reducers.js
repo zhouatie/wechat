@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SAVE_INFO, ADD_FRIEND, ADD_CHATS, HAS_READ } from './actions'
+import { SAVE_INFO, ADD_FRIEND, ADD_CHATS, HAS_READ, UPDATE_LOGO } from './actions'
 
 
 
@@ -14,28 +14,18 @@ function save_info(state = {}, action) {
         case HAS_READ:
             let new_arr = JSON.parse(JSON.stringify(state.rooms));
             new_arr.map(obj => {
-                if(obj[action.user]){
-                    obj[action.user].map(o=>o.has_read=true);
+                if (obj[action.user]) {
+                    obj[action.user].map(o => o.has_read = true);
                     return;
                 }
             })
             return Object.assign({}, state, { rooms: new_arr })
             break;
         case ADD_CHATS:
-            // let room_key = action.data.room_id,
-            //     room_index = state.rooms.findIndex(T => T[room_key]);
-            // console.log(room_index, 'room_index')
-            // if (room_index > -1) {
-            //     state.rooms.unshift(state.rooms.splice(room_index, 1)[0]);
-
-            //     state.rooms[0][room_key].push(action.data);
-            // } else {
-            //     state.rooms.unshift({ [room_key]: [action.data] })
-            // }
-            // return state;
-
             return Object.assign({}, state, { rooms: add_chats(state.rooms, action) })
-
+            break;
+        case UPDATE_LOGO:
+            return Object.assign({}, state, { logo: action.url })
             break;
         default:
             return state

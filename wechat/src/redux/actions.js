@@ -6,6 +6,7 @@ export const SAVE_INFO = 'SAVE_INFO';
 export const ADD_FRIEND = 'ADD_FRIEND';
 export const ADD_CHATS = 'ADD_CHATS'
 export const HAS_READ = 'HAS_READ'
+export const UPDATE_LOGO = 'UPDATE_LOGO'
 /*
  * 其它的常量
  */

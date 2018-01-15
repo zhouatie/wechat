@@ -1,15 +1,21 @@
 var express = require("express");
 var app = express();
+var path = require("path");
 var bodyParser = require("body-parser")
+var multer = require('multer');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('./mongo/mongodb.js');
 app.use(bodyParser.json())
-
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(multer().single('avatar'));
+var upload = multer({ dest: '../wechat/public/logos' });
 var User = require("./mongo/models/user.js");
 
 var online_arr = [];
+
 // 注册
+
 app.post("/register", function (req, res) {
 
     User.find({ username: req.body.username }, function (err, doc) {
@@ -90,7 +96,7 @@ app.post('/makeFriend', (req, res) => {
     let self = req.body.self;
     let friend = req.body.friend;
 
-    User.update({ _id: friend.id }, { $addToSet: { friends: self } },(err,doc)=>{
+    User.update({ _id: friend.id }, { $addToSet: { friends: self } }, (err, doc) => {
 
     })
     User.update({ _id: self.id }, { $addToSet: { friends: friend } }, (err, doc) => {
@@ -102,10 +108,15 @@ app.post('/makeFriend', (req, res) => {
 
 })
 
-
-
-
-
+// 上传头像
+app.post("/uploadLogo", upload.single("avatar"), (req, res) => {
+    User.update({ _id: req.body.id }, { $set: { logo: './logos/' + req.file.filename } }, function () {
+        res.send({
+            status: "success",
+            url: './logos/' + req.file.filename
+        })
+    })
+})
 
 
 

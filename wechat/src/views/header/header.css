@@ -27,3 +27,6 @@
     color:#fff;
     text-decoration: none;
 }
+#header input {
+    display: none;
+}

@@ -35,9 +35,7 @@ class Register extends Component {
     this[name] = value;
 
   }
-  componentWillMount() {
-
-  }
+  
   username = ""
   password = ""
   nickname = ""
@@ -79,7 +77,6 @@ class Register extends Component {
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: 'title',
-      message: 'I am description, description, description',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,

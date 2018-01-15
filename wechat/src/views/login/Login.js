@@ -32,9 +32,7 @@ class Login extends Component {
   username = ""
   password = ""
   bool = ""
-  componentDidMount() {
-
-  }
+  
   successToast(value) {
     Toast.success(value, 2);
   }
@@ -78,7 +76,6 @@ class Login extends Component {
       cancelButtonIndex: BUTTONS.length - 1,
       destructiveButtonIndex: BUTTONS.length - 2,
       // title: 'title',
-      message: 'I am description, description, description',
       maskClosable: true,
       'data-seed': 'logId',
       wrapProps,
