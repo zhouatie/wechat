@@ -42,6 +42,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 
 
 ![](./data/uploadLogo2018011501.gif)
+ <img src="./data/uploadLogo2018011501.gif" width="500"/>
 
 
 ## 总结
