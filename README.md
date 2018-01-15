@@ -41,7 +41,6 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 ![](./data/wechat_2018-01-14.gif)
 
 
-![](./data/uploadLogo2018011501.gif)
  <img src="./data/uploadLogo2018011501.gif" width="500"/>
 
 
