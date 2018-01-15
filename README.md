@@ -31,7 +31,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 - [x] 未读消息数量的显示 -- 完成
 - [x] axios数据跨域的设置 -- 完成
 - [ ] 群聊
-- [ ] 上传头像
+- [x] 上传头像
 - [ ] 个人信息的编辑
 - [ ] 朋友圈
  
@@ -40,7 +40,7 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 ## 部分截图
 ![](./data/wechat_2018-01-14.gif)
 
-####上传头像
+
 ![](./data/uploadLogo.gif)
 
 
