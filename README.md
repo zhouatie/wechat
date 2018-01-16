@@ -12,6 +12,15 @@ react+redux+react-router4+socket.io+axios+node.js+mongodb
 
 ## 说明
 
+
+```
+本地启动mongodb服务
+分别进入wechat跟server文件夹npm install
+wechat里npm run start 
+server里node app.js 和 chat.js 这两个文件
+```
+
+
 > 喜欢的话可以帮忙点个star
 
 > 开发环境：macbook pro 、vscode、Chrome、node
