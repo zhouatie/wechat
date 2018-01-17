@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SAVE_INFO, ADD_FRIEND, ADD_CHATS, HAS_READ, UPDATE_LOGO } from './actions'
+import { SAVE_INFO, ADD_FRIEND, ADD_CHATS, HAS_READ, UPDATE_LOGO,SAVENICKNAME } from './actions'
 
 
 
@@ -26,6 +26,9 @@ function save_info(state = {}, action) {
             break;
         case UPDATE_LOGO:
             return Object.assign({}, state, { logo: action.url })
+            break;
+        case SAVENICKNAME:
+            return Object.assign({}, state, { nickname: action.data.nickname })
             break;
         default:
             return state

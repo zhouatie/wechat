@@ -10,7 +10,7 @@ class EditInfo extends Component {
             <div id="editInfo">
                 <Header field={{ title: '个人信息', path: "/editInfo" }} />
                 <div className="userInfo-content">
-                    <div style={{marginTop:0}} className="items-wrap">
+                    <div style={{ marginTop: 0 }} className="items-wrap">
                         <Link to="/uploadLogo" className="upload_logo">
                             <div className="textWrap">
                                 <div className="">头像</div>
@@ -22,16 +22,16 @@ class EditInfo extends Component {
                                 <span className="iconfont icon-arrow-right"></span>
                             </div>
                         </Link>
-                        <div className="user-item">
+                        <Link style={{display:'flex',color:'#000'}} to="/resetInfo" className="user-item">
                             <div className="textWrap">名字</div>
                             <div className="text-info">{this.props.self_nickname}</div>
                             <div className="arrow">
                                 <span className="iconfont icon-arrow-right"></span>
                             </div>
-                        </div>
+                        </Link>
                         <div className="user-item">
                             <div className="textWrap">微信号</div>
-                            <div style={{marginRight:0}} className="text-info">{this.props.self_username}</div>
+                            <div style={{ marginRight: 0 }} className="text-info">{this.props.self_username}</div>
                         </div>
                         <div className="user-item">
                             <div className="textWrap">我的二维码</div>

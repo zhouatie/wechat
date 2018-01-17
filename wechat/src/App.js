@@ -10,6 +10,7 @@ import Add_friend from './views/add_friend/Add_friend.js'
 import Chat from './views/chat/Chat.js'
 import EditInfo from './views/editInfo/EditInfo.js'
 import UploadLogo from './views/uploadLogo/UploadLogo.js'
+import ResetInfo from './views/resetInfo/ResetInfo.js'
 
 import * as io from 'socket.io-client'
 
@@ -54,6 +55,7 @@ class App extends Component {
           <PrivateRoute exact={true} path="/chat" component={Chat} />
           <PrivateRoute exact={true} path="/editInfo" component={EditInfo} />
           <PrivateRoute exact={true} path="/uploadLogo" component={UploadLogo} />
+          <PrivateRoute exact={true} path="/resetInfo" component={ResetInfo} />
           <Redirect exact={true} from='/' to='/login' />
         </Switch>
       </Router>

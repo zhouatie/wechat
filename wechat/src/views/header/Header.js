@@ -26,6 +26,9 @@ class Header extends Component {
       case "/uploadLogo":
         Left = <Link to="/editInfo" className="left iconfont icon-back">个人信息</Link>;
         break;
+      case "/resetInfo":
+        Left = <Link to="/editInfo" className="left iconfont">取消</Link>;
+        break;
       default:
         Left = <span></span>;
     }
@@ -46,6 +49,9 @@ class Header extends Component {
         break;
       case "/uploadLogo":
         Right = <label className="right iconfont icon-upload" ><input name="avatar" accept='image/*' onChange={this.props.onUpload} type="file"/></label>;
+        break;
+      case "/resetInfo":
+        Right = <Link onClick={this.props.onSavename} style={{fontSize:'.16rem',color:"#1aad19"}} to="/editInfo" className="right iconfont">完成</Link>;
         break;
       default:
         Right = <span></span>;

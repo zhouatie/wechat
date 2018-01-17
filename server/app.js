@@ -118,6 +118,14 @@ app.post("/uploadLogo", upload.single("avatar"), (req, res) => {
     })
 })
 
+// 修改名字
+app.post("/savenickname",(req,res)=>{
+    User.update({_id:req.body.id},{$set:{nickname:req.body.nickname}},function(){
+        res.send({
+            status:'success'
+        })
+    })
+})
 
 
 

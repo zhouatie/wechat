@@ -65,6 +65,6 @@
 #editInfo .items-wrap>* {
     line-height: .45rem;
 }
-#editInfo .items-wrap .user-item:last-of-type {
+#editInfo .items-wrap div.user-item:last-of-type {
     border-bottom:none;
 }
