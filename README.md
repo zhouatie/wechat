@@ -69,7 +69,7 @@ server里node app.js 和 chat.js 这两个文件
 
 5.formdata上传文件，相当于表单上传，头部为`Content-Type:multipart/form-data`,这点要注意了！
 > 注意: Multer 不会处理任何非 multipart/form-data 类型的表单数据。具体见   [multer](https://www.npmjs.com/package/multer)
-```
+```javascript
 var multer = require('multer');
 var upload = multer({ dest: '../wechat/public/logos' }); // dest 指的是图片存到哪个文件夹里
 
