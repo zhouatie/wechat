@@ -29,7 +29,7 @@ io.on('connection', function (socket) {
     arrAllSocket[user] = socket;//把socket存到全局数组里面去
   });
 
-  //私聊：服务器接受到私聊信息，发送给目标用户  
+  //私聊：服务器接受到私聊信息，发送给目标用户
   socket.on('private_message', function (from, to, msg) {
     var target = arrAllSocket[to];
 

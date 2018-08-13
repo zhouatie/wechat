@@ -1,4 +1,4 @@
-# 前言
+# 前言(远古初学时的代码😆慎入)
 
 这个项目是我自学react+redux的第一个项目，并结合自己之前所学的node+mongodb，来模仿开发微信客户端。利用每天下班时间边学习边写。由于本人技术水平有限，所以几乎没有什么高级代码。目前还没有写完。喜欢的话可以帮忙点个star ^_^
 
@@ -100,3 +100,6 @@ app.post("/uploadLogo", upload.single("avatar"), (req, res) => {
 [基于 Vue、Nodejs、Socket.io 的聊天应用](https://juejin.im/entry/5923e2242f301e006b2a7827)
 
 [multer](https://www.npmjs.com/package/multer)
+
+
+> 文章都是学习过程中的总结，如果发现错误，欢迎留言指出，如果你热爱分享知识那就加入我们吧 群号:431679880

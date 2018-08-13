@@ -32,7 +32,7 @@ class Login extends Component {
   username = ""
   password = ""
   bool = ""
-  
+
   successToast(value) {
     Toast.success(value, 2);
   }
